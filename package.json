@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 {
   "name": "derby86-web",
   "version": "0.1.0",
@@ -22,4 +19,3 @@
     "tailwindcss": "^3.3.0"
   }
 }
->>>>>>> 9b36166 (Fix web app files for Vercel deploy)
