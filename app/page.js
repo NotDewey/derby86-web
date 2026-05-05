@@ -46,12 +46,6 @@ export default function Home() {
 
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE)
 
-  const waLink = (p) => {
-    const nombre = p.nombre_display || 'Playera retro'
-    const txt = encodeURIComponent(`Hola Derby 86, me interesa: ${nombre}`)
-    return `https://wa.me/521XXXXXXXXXX?text=${txt}`
-  }
-
   return (
     <div style={{ background: '#f8f4ee', minHeight: '100vh' }}>
 
@@ -76,11 +70,6 @@ export default function Home() {
             <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>Football Jerseys</p>
           </div>
         </div>
-
-        <a href="https://wa.me/521XXXXXXXXXX" target="_blank" rel="noopener noreferrer"
-          style={{ background: '#1a1a1a', color: '#f8f4ee', padding: '8px 18px', borderRadius: '2px', fontSize: '11px', letterSpacing: '2px', textDecoration: 'none', textTransform: 'uppercase' }}>
-          Pedir
-        </a>
       </nav>
 
       {/* ── MENU DRAWER ── */}
@@ -207,25 +196,14 @@ export default function Home() {
                       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🎽</div>
                     )}
                   </div>
-                  <div style={{ padding: '12px 14px', borderTop: '1px solid #e0d8cc' }}>
-                    <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '3px' }}>
+                  <div style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
+                    <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '5px' }}>
                       {p.liga || 'Jersey'}{p.anio ? ` · ${p.anio}` : ''}
                     </p>
-                    <p style={{ fontFamily: 'Barlow Condensed', fontSize: '15px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, marginBottom: '10px' }}>{nombre}</p>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '13px', color: '#888' }}>
-                        {p.precio_venta ? `$${p.precio_venta} MXN` : 'Consultar precio'}
-                      </span>
-                      <a href={waLink(p)} target="_blank" rel="noopener noreferrer"
-                        style={{
-                          background: hov ? '#1a1a1a' : 'transparent', color: hov ? '#f8f4ee' : '#1a1a1a',
-                          border: '1px solid #1a1a1a', borderRadius: '2px', padding: '5px 10px',
-                          fontSize: '10px', letterSpacing: '2px', textDecoration: 'none',
-                          textTransform: 'uppercase', transition: 'all 0.2s',
-                        }}>
-                        Pedir →
-                      </a>
-                    </div>
+
+                    <p style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
+                      {nombre}
+                    </p>
                   </div>
                 </div>
               )
