@@ -83,7 +83,7 @@ export default function Home() {
           }}>
             <button onClick={() => setMenuOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', alignSelf: 'flex-end', marginBottom: '32px', color: '#1a1a1a' }}>✕</button>
             <img src={LOGO_SVG} alt="Derby 86" style={{ width: '80px', height: '80px', borderRadius: '50%', marginBottom: '24px' }}/>
-            {['Inicio', 'Catálogo', 'Selecciones', 'Clubes', 'Contacto'].map(item => (
+            {['Inicio', 'Catálogo', 'Contacto', 'Envíos', 'Nosotros'].map(item => (
               <p key={item} onClick={() => setMenuOpen(false)} style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '26px', letterSpacing: '1px', color: '#1a1a1a', cursor: 'pointer', padding: '10px 0', borderBottom: '1px solid #e0d8cc' }}>{item}</p>
             ))}
             <div style={{ marginTop: 'auto', display: 'flex', gap: '16px' }}>
