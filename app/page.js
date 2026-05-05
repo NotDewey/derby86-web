@@ -47,7 +47,7 @@ export default function Home() {
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE)
 
   const waLink = (p) => {
-    const nombre = p.nombre_display || p.nombre_proveedor
+    const nombre = p.nombre_display || 'Playera retro'
     const txt = encodeURIComponent(`Hola Derby 86, me interesa: ${nombre}`)
     return `https://wa.me/521XXXXXXXXXX?text=${txt}`
   }
@@ -189,14 +189,17 @@ export default function Home() {
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1px', background: '#e0d8cc' }}>
             {playeras.map(p => {
-              const nombre = p.nombre_display || p.nombre_proveedor
+              const nombre = p.nombre_display || 'Playera retro'
+              const imagen = p.url_proveedor
+                ? `${p.url_proveedor}${p.url_proveedor.includes('?') ? '&' : '?'}uid=1`
+                : null
               const hov = hoveredId === p.id
               return (
                 <div key={p.id} onMouseEnter={() => setHoveredId(p.id)} onMouseLeave={() => setHoveredId(null)}
                   style={{ background: '#f8f4ee', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
-                    {p.url_imagen ? (
-                      <img src={p.url_imagen} alt={nombre}
+                    {imagen ? (
+                      <img src={imagen} alt={nombre}
                         style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)' }}
                         onError={e => { e.target.style.display = 'none' }}
                       />
