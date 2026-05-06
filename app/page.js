@@ -114,9 +114,9 @@ export default function Home() {
      {/* ── CATEGORÍAS ── */}
     <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #e0d8cc' }}>
       {[
-        { label: 'Jerseys Retro', sub: '70s · 80s · 90s', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
-        { label: 'Selecciones', sub: 'Mundiales & Copas', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
-        { label: 'Clubes', sub: 'Europa & América', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
+        { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
+        { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
+        { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
     ].map((cat, i) => (
       <div key={i} onClick={() => setFilter(cat.filtroKey, cat.filtroVal)}
         style={{
