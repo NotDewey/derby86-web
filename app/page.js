@@ -111,27 +111,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CATEGORÍAS ── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #e0d8cc' }}>
-        {[
-          { label: 'Jerseys Retro', sub: '70s · 80s · 90s', emoji: '🏆', bg: '#1a1a1a', color: '#f8f4ee' },
-          { label: 'Selecciones', sub: 'Mundiales & Copas', emoji: '⚽', bg: '#f0ebe0', color: '#1a1a1a' },
-          { label: 'Clubes', sub: 'Europa & América', emoji: '🏟️', bg: '#1a1a1a', color: '#f8f4ee' },
-        ].map((cat, i) => (
-          <div key={i} onClick={() => setFilter(i === 1 ? 'liga' : 'epoca', i === 0 ? '90s' : i === 1 ? 'Selección' : 'La Liga')}
-            style={{
-              padding: 'clamp(20px, 4vw, 48px)', background: cat.bg, cursor: 'pointer',
-              borderRight: i < 2 ? '1px solid #e0d8cc' : 'none',
-              display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '160px',
-            }}>
-            <span style={{ fontSize: '28px' }}>{cat.emoji}</span>
-            <div>
-              <p style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(14px, 2vw, 20px)', color: cat.color, letterSpacing: '1px', marginBottom: '4px' }}>{cat.label} →</p>
-              <p style={{ fontSize: '11px', color: cat.color === '#1a1a1a' ? '#666' : '#aaa', letterSpacing: '2px', textTransform: 'uppercase' }}>{cat.sub}</p>
-            </div>
-          </div>
-        ))}
-      </section>
+     {/* ── CATEGORÍAS ── */}
+    <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #e0d8cc' }}>
+      {[
+        { label: 'Jerseys Retro', sub: '70s · 80s · 90s', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
+        { label: 'Selecciones', sub: 'Mundiales & Copas', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
+        { label: 'Clubes', sub: 'Europa & América', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/sitting-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
+    ].map((cat, i) => (
+      <div key={i} onClick={() => setFilter(cat.filtroKey, cat.filtroVal)}
+        style={{
+          cursor: 'pointer', position: 'relative', overflow: 'hidden',
+          borderRight: i < 2 ? '1px solid #e0d8cc' : 'none',
+          minHeight: '260px',
+        }}>
+        {/* Foto de fondo */}
+        <img src={cat.foto} alt={cat.label} style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', transition: 'transform 0.4s',
+        }}
+          onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+          onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+        />
+        {/* Overlay oscuro */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%)' }}/>
+        {/* Texto */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(16px, 3vw, 32px)' }}>
+          <p style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(14px, 2vw, 22px)', color: '#f8f4ee', letterSpacing: '1px', marginBottom: '4px' }}>{cat.label} →</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '2px', textTransform: 'uppercase' }}>{cat.sub}</p>
+        </div>
+      </div>
+    ))}
+  </section>
 
       {/* ── FILTROS ── */}
       <div style={{
