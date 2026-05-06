@@ -116,7 +116,7 @@ export default function Home() {
       {[
         { label: 'Jerseys Retro', sub: '70s · 80s · 90s', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
         { label: 'Selecciones', sub: 'Mundiales & Copas', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
-        { label: 'Clubes', sub: 'Europa & América', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/sitting-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
+        { label: 'Clubes', sub: 'Europa & América', foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
     ].map((cat, i) => (
       <div key={i} onClick={() => setFilter(cat.filtroKey, cat.filtroVal)}
         style={{
