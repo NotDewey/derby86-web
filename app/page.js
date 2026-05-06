@@ -132,13 +132,6 @@ export default function Home() {
           onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
           onMouseLeave={e => e.target.style.transform = 'scale(1)'}
         />
-        {/* Overlay oscuro */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%)' }}/>
-        {/* Texto */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(16px, 3vw, 32px)' }}>
-          <p style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(14px, 2vw, 22px)', color: '#f8f4ee', letterSpacing: '1px', marginBottom: '4px' }}>{cat.label} →</p>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '2px', textTransform: 'uppercase' }}>{cat.sub}</p>
-        </div>
       </div>
     ))}
   </section>
