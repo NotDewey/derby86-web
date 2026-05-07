@@ -112,7 +112,7 @@ export default function Home() {
               style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '12px',
-                background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
+                background: 'linear-gradient(45deg, #474747, #d4c1ba, #1e1e1e, #413e3f, #050505)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -126,7 +126,7 @@ export default function Home() {
               style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '12px',
-                background: '#25D366',
+                background: '#000000',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
