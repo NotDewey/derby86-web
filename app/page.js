@@ -239,7 +239,7 @@ export default function Home() {
         ) : playeras.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Sin resultados</div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1px', background: '#e0d8cc' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1px' }}>
             {playeras.map(p => {
               const nombre = p.nombre_display || 'Playera retro'
               const imagen = p.foto_portada || null
@@ -249,7 +249,7 @@ export default function Home() {
                   onMouseEnter={() => setHoveredId(p.id)}
                   onMouseLeave={() => setHoveredId(null)}
                   onClick={() => openPlayera(p)}
-                  style={{ background: '#f8f4ee', position: 'relative', overflow: 'hidden', cursor: 'pointer' }}>
+                  style={{ background: '#f8f4ee', position: 'relative', overflow: 'hidden', cursor: 'pointer', boxShadow: '1px 0 0 #e0d8cc, 0 1px 0 #e0d8cc' }}>
                   <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
                     {imagen ? (
                       <img src={imagen} alt={nombre}
@@ -335,8 +335,8 @@ export default function Home() {
               borderRadius: '28px',
               boxShadow: '0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10), inset 0 1.5px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(255,255,255,0.3), inset 1px 0 0 rgba(255,255,255,0.5)',
               outline: '1px solid rgba(255,255,255,0.18)',
-              width: '100%', maxWidth: '900px',
-              maxHeight: '90vh', overflow: 'hidden',
+              width: '100%', maxWidth: '1100px',
+              maxHeight: '92vh', overflow: 'hidden',
               display: 'flex', flexDirection: 'column',
               animation: 'popUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}>
@@ -351,7 +351,7 @@ export default function Home() {
                   <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(30,20,10,0.55)', textTransform: 'uppercase', marginBottom: '4px' }}>
                     {selectedPlayera.liga || 'Jersey'}{selectedPlayera.anio ? ` · ${selectedPlayera.anio}` : ''}
                   </p>
-                  <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '22px', fontWeight: 700, color: 'rgba(15,10,5,0.9)', letterSpacing: '0.5px', lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '26px', fontWeight: 700, color: 'rgba(15,10,5,0.9)', letterSpacing: '0.5px', lineHeight: 1.1 }}>
                     {selectedPlayera.nombre_display || 'Playera retro'}
                   </p>
                 </div>
@@ -367,7 +367,7 @@ export default function Home() {
               <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
 
                 {/* Slideshow */}
-                <div style={{ flex: '0 0 55%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '400px' }}>
+                <div style={{ flex: '0 0 62%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '480px' }}>
                   {loadingFotos ? (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(20,15,10,0.4)', fontSize: '11px', letterSpacing: '3px' }}>
                       CARGANDO...
