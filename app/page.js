@@ -315,9 +315,9 @@ export default function Home() {
           {/* Backdrop blur */}
           <div onClick={closePlayera} style={{
             position: 'fixed', inset: 0, zIndex: 500,
-            backdropFilter: 'blur(20px) saturate(0.8)',
-            WebkitBackdropFilter: 'blur(20px) saturate(0.8)',
-            background: 'rgba(10, 10, 10, 0.6)',
+            backdropFilter: 'blur(28px) saturate(1.2)',
+            WebkitBackdropFilter: 'blur(28px) saturate(1.2)',
+            background: 'rgba(180, 170, 160, 0.25)',
             animation: 'fadeIn 0.25s ease-out',
           }}/>
 
@@ -328,12 +328,13 @@ export default function Home() {
             padding: '20px',
           }}>
             <div style={{
-              background: 'rgba(248, 244, 238, 0.12)',
-              backdropFilter: 'blur(48px) saturate(1.8) brightness(1.1)',
-              WebkitBackdropFilter: 'blur(48px) saturate(1.8) brightness(1.1)',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              borderRadius: '24px',
-              boxShadow: '0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(255,255,255,0.1)',
+              background: 'rgba(255, 255, 255, 0.22)',
+              backdropFilter: 'blur(60px) saturate(2.2) brightness(1.35)',
+              WebkitBackdropFilter: 'blur(60px) saturate(2.2) brightness(1.35)',
+              border: '1.5px solid rgba(255, 255, 255, 0.65)',
+              borderRadius: '28px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10), inset 0 1.5px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(255,255,255,0.3), inset 1px 0 0 rgba(255,255,255,0.5)',
+              outline: '1px solid rgba(255,255,255,0.18)',
               width: '100%', maxWidth: '900px',
               maxHeight: '90vh', overflow: 'hidden',
               display: 'flex', flexDirection: 'column',
@@ -344,20 +345,20 @@ export default function Home() {
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 padding: '20px 24px 16px',
-                borderBottom: '1px solid rgba(255,255,255,0.15)',
+                borderBottom: '1px solid rgba(255,255,255,0.35)',
               }}>
                 <div>
-                  <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', marginBottom: '4px' }}>
+                  <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(30,20,10,0.55)', textTransform: 'uppercase', marginBottom: '4px' }}>
                     {selectedPlayera.liga || 'Jersey'}{selectedPlayera.anio ? ` · ${selectedPlayera.anio}` : ''}
                   </p>
-                  <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '22px', fontWeight: 700, color: '#fff', letterSpacing: '0.5px', lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '22px', fontWeight: 700, color: 'rgba(15,10,5,0.9)', letterSpacing: '0.5px', lineHeight: 1.1 }}>
                     {selectedPlayera.nombre_display || 'Playera retro'}
                   </p>
                 </div>
                 <button onClick={closePlayera} style={{
-                  background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)',
+                  background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.75)',
                   borderRadius: '50%', width: '36px', height: '36px',
-                  color: '#fff', fontSize: '16px', cursor: 'pointer',
+                  color: 'rgba(20,15,10,0.8)', fontSize: '16px', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                 }}>✕</button>
               </div>
@@ -366,9 +367,9 @@ export default function Home() {
               <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
 
                 {/* Slideshow */}
-                <div style={{ flex: '0 0 55%', position: 'relative', background: 'rgba(0,0,0,0.25)', minHeight: '400px' }}>
+                <div style={{ flex: '0 0 55%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '400px' }}>
                   {loadingFotos ? (
-                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '3px' }}>
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(20,15,10,0.4)', fontSize: '11px', letterSpacing: '3px' }}>
                       CARGANDO...
                     </div>
                   ) : fotos.length > 0 ? (
@@ -386,14 +387,14 @@ export default function Home() {
                         <>
                           <button onClick={() => setFotoIndex(i => (i - 1 + fotos.length) % fotos.length)} style={{
                             position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)',
-                            background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.3)',
-                            borderRadius: '50%', width: '38px', height: '38px', color: '#fff',
+                            background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)',
+                            borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)',
                             fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                           }}>‹</button>
                           <button onClick={() => setFotoIndex(i => (i + 1) % fotos.length)} style={{
                             position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
-                            background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.3)',
-                            borderRadius: '50%', width: '38px', height: '38px', color: '#fff',
+                            background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)',
+                            borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)',
                             fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                           }}>›</button>
                           <div style={{ position: 'absolute', bottom: '14px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px' }}>
@@ -401,13 +402,13 @@ export default function Home() {
                               <div key={i} onClick={() => setFotoIndex(i)} style={{
                                 width: i === fotoIndex ? '20px' : '6px', height: '6px',
                                 borderRadius: '3px', cursor: 'pointer', transition: 'all 0.25s',
-                                background: i === fotoIndex ? '#fff' : 'rgba(255,255,255,0.35)',
+                                background: i === fotoIndex ? 'rgba(20,15,10,0.7)' : 'rgba(255,255,255,0.6)',
                               }}/>
                             ))}
                           </div>
                         </>
                       )}
-                      <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.45)', borderRadius: '12px', padding: '3px 10px', fontSize: '10px', color: 'rgba(255,255,255,0.75)', letterSpacing: '1px' }}>
+                      <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(255,255,255,0.55)', borderRadius: '12px', padding: '3px 10px', fontSize: '10px', color: 'rgba(20,15,10,0.7)', letterSpacing: '1px', backdropFilter: 'blur(8px)' }}>
                         {fotoIndex + 1} / {fotos.length}
                       </div>
                     </>
@@ -422,16 +423,16 @@ export default function Home() {
                 {/* Info lateral */}
                 <div style={{
                   flex: 1, padding: '24px', overflowY: 'auto',
-                  borderLeft: '1px solid rgba(255,255,255,0.12)',
+                  borderLeft: '1px solid rgba(255,255,255,0.4)',
                   display: 'flex', flexDirection: 'column', gap: '20px',
                 }}>
                   {/* Tags */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {[selectedPlayera.equipo, selectedPlayera.liga, selectedPlayera.epoca, selectedPlayera.tipo].filter(Boolean).map((tag, i) => (
                       <span key={i} style={{
-                        background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.22)',
+                        background: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.7)',
                         borderRadius: '4px', padding: '3px 10px',
-                        fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.8)',
+                        fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.75)',
                         textTransform: 'uppercase',
                       }}>{tag}</span>
                     ))}
@@ -440,9 +441,9 @@ export default function Home() {
                   {/* Precio */}
                   {selectedPlayera.precio_proveedor && (
                     <div>
-                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', marginBottom: '4px' }}>Precio</p>
-                      <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '32px', fontWeight: 700, color: '#fff', lineHeight: 1 }}>
-                        ${selectedPlayera.precio_proveedor} <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>MXN</span>
+                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.45)', textTransform: 'uppercase', marginBottom: '4px' }}>Precio</p>
+                      <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '32px', fontWeight: 700, color: 'rgba(15,10,5,0.9)', lineHeight: 1 }}>
+                        ${selectedPlayera.precio_proveedor} <span style={{ fontSize: '14px', color: 'rgba(20,15,10,0.4)' }}>MXN</span>
                       </p>
                     </div>
                   )}
@@ -450,8 +451,8 @@ export default function Home() {
                   {/* Descripción */}
                   {selectedPlayera.descripcion && (
                     <div>
-                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', marginBottom: '6px' }}>Descripción</p>
-                      <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.7 }}>
+                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.45)', textTransform: 'uppercase', marginBottom: '6px' }}>Descripción</p>
+                      <p style={{ fontSize: '13px', color: 'rgba(20,15,10,0.7)', lineHeight: 1.7 }}>
                         {selectedPlayera.descripcion}
                       </p>
                     </div>
@@ -460,7 +461,7 @@ export default function Home() {
                   {/* Thumbnails galería */}
                   {fotos.length > 1 && (
                     <div>
-                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>Galería</p>
+                      <p style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>Galería</p>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                         {fotos.map((f, i) => (
                           <img key={i} src={f.url} alt={`Foto ${i+1}`}
