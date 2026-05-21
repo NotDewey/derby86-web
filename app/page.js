@@ -227,9 +227,7 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1px', background: '#e0d8cc' }}>
             {playeras.map(p => {
               const nombre = p.nombre_display || 'Playera retro'
-              const imagen = p.url_proveedor
-                ? `${p.url_proveedor}${p.url_proveedor.includes('?') ? '&' : '?'}uid=1`
-                : null
+              const imagen = p.foto_portada || null
               const hov = hoveredId === p.id
               return (
                 <div key={p.id} onMouseEnter={() => setHoveredId(p.id)} onMouseLeave={() => setHoveredId(null)}
