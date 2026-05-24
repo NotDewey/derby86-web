@@ -21,6 +21,7 @@ export default function Home() {
   const [fotos, setFotos]             = useState([])
   const [fotoIndex, setFotoIndex]     = useState(0)
   const [loadingFotos, setLoadingFotos] = useState(false)
+  const [ediciones, setEdiciones]       = useState({})
 
   const fetchPlayeras = useCallback(async () => {
     setLoading(true)
@@ -42,6 +43,18 @@ export default function Home() {
   }, [page, activeFilter])
 
   useEffect(() => { fetchPlayeras() }, [fetchPlayeras])
+
+  useEffect(() => {
+    const fetchEdiciones = async () => {
+      const { data } = await supabase.from('ediciones_especiales').select('nombre, logo_url')
+      if (data) {
+        const map = {}
+        data.forEach(e => { map[e.nombre] = e.logo_url })
+        setEdiciones(map)
+      }
+    }
+    fetchEdiciones()
+  }, [])
 
   const setFilter = (key, val) => {
     setActive(p => ({ ...p, [key]: p[key] === val ? '' : val }))
@@ -267,6 +280,12 @@ export default function Home() {
                     <p style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
                       {nombre}
                     </p>
+                    {p.edicion_especial && ediciones[p.edicion_especial] && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
+                        <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />
+                        <span style={{ fontSize: '9px', letterSpacing: '1.5px', color: '#888', textTransform: 'uppercase' }}>{p.edicion_especial}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               )
@@ -437,6 +456,14 @@ export default function Home() {
                       }}>{tag}</span>
                     ))}
                   </div>
+
+                  {/* Badge edición especial */}
+                  {selectedPlayera.edicion_especial && ediciones[selectedPlayera.edicion_especial] && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.5)', borderRadius: '10px', width: 'fit-content' }}>
+                      <img src={ediciones[selectedPlayera.edicion_especial]} alt={selectedPlayera.edicion_especial} style={{ height: '28px', width: 'auto', objectFit: 'contain' }} />
+                      <span style={{ fontSize: '11px', letterSpacing: '2px', color: 'rgba(20,15,10,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>{selectedPlayera.edicion_especial}</span>
+                    </div>
+                  )}
 
                   {/* Precio */}
                   {selectedPlayera.precio_proveedor && (
