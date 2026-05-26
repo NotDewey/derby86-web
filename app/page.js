@@ -38,7 +38,8 @@ export default function Home() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }, 300)
     }
-    
+  }
+  
   const fetchPlayeras = useCallback(async () => {
     setLoading(true)
     let q = supabase
