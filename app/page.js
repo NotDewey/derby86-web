@@ -33,13 +33,12 @@ export default function Home() {
         if (el) el.scrollIntoView({ behavior: 'smooth' })
       }, 350)
     } else {
+      if (section === 'hero') setCatalogoVisible(false)
       setTimeout(() => {
-        const el = document.getElementById(section)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }, 300)
     }
-  }
-
+    
   const fetchPlayeras = useCallback(async () => {
     setLoading(true)
     let q = supabase
@@ -219,7 +218,7 @@ export default function Home() {
           <div key={i} onClick={() => setFilter(cat.filtroKey, cat.filtroVal)}
             style={{
               cursor: 'pointer', position: 'relative', overflow: 'hidden',
-              borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', minHeight: '260px',
+              borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', minHeight: '420px',
             }}>
             <img src={cat.foto} alt="" style={{
               position: 'absolute', inset: 0, width: '100%', height: '100%',
@@ -350,7 +349,7 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer id="footer" style={{ padding: '24px', borderTop: '1px solid #e0d8cc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+      <footer id="footer" style={{ padding: '24px',margainTop: '200px' ,borderTop: '1px solid #e0d8cc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
         <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '14px', letterSpacing: '2px', color: '#aaa' }}>DERBY 86</p>
         <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#ccc' }}>Monterrey, NL · Envíos a todo México · @derby.86</p>
       </footer>
