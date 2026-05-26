@@ -349,7 +349,7 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer id="footer" style={{ padding: '24px',margainTop: '200px' ,borderTop: '1px solid #e0d8cc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+      <footer id="footer" style={{ padding: '24px',marginTop: '200px' ,borderTop: '1px solid #e0d8cc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
         <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '14px', letterSpacing: '2px', color: '#aaa' }}>DERBY 86</p>
         <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#ccc' }}>Monterrey, NL · Envíos a todo México · @derby.86</p>
       </footer>
