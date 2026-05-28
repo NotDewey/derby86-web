@@ -313,7 +313,7 @@ export default function Home() {
                   gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
                   gap: '1px',
                   padding: '1px',
-                  background: '#e0d8cc',
+                  background: 'transparent',
                   border: 'none',
                   boxSizing: 'border-box',
                   width: '100%',
