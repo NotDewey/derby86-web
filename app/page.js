@@ -311,8 +311,8 @@ export default function Home() {
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                  gap: '1px',
-                  background: '#e0d8cc',
+                  gap: '0px',
+                  background: 'transparent',
                   border: '1px solid #e0d8cc',
                   boxSizing: 'border-box',
                   width: '100%',
@@ -331,6 +331,9 @@ export default function Home() {
                           position: 'relative',
                           overflow: 'hidden',
                           cursor: 'pointer',
+                          borderRight: '1px solid #e0d8cc',
+                          borderBottom: '1px solid #e0d8cc',
+                          boxSizing: 'border-box',
                           // sin boxShadow — el gap con background hace los bordes
                         }}>
                         <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
