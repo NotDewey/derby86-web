@@ -310,10 +310,11 @@ export default function Home() {
                 // FIX GRID: background del gap = color del borde, sin boxShadow roto
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                  gap: '0px',
-                  background: 'transparent',
-                  border: '1px solid #e0d8cc',
+                  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                  gap: '1px',
+                  padding: '1px',
+                  background: '#e0d8cc',
+                  border: 'none',
                   boxSizing: 'border-box',
                   width: '100%',
                 }}>
@@ -331,8 +332,6 @@ export default function Home() {
                           position: 'relative',
                           overflow: 'hidden',
                           cursor: 'pointer',
-                          borderRight: '1px solid #e0d8cc',
-                          borderBottom: '1px solid #e0d8cc',
                           boxSizing: 'border-box',
                           // sin boxShadow — el gap con background hace los bordes
                         }}>
