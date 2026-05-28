@@ -310,11 +310,10 @@ export default function Home() {
                 // FIX GRID: background del gap = color del borde, sin boxShadow roto
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
                   gap: '1px',
-                  padding: '1px',
-                  background: 'transparent',
-                  border: 'none',
+                  background: '#e0d8cc',
+                  border: '1px solid #e0d8cc',
                   boxSizing: 'border-box',
                   width: '100%',
                 }}>
