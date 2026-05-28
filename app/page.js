@@ -24,7 +24,6 @@ export default function Home() {
   const [ediciones, setEdiciones]     = useState({})
   const [catalogoVisible, setCatalogoVisible] = useState(false)
 
-  // Bloquear scroll hacia arriba cuando el catálogo está visible
   useEffect(() => {
     if (!catalogoVisible) return
     const handleScroll = () => {
@@ -113,7 +112,14 @@ export default function Home() {
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE)
 
   return (
-    <div style={{ background: '#f8f4ee', minHeight: '100vh' }}>
+    // ── FIX PRINCIPAL: width:100%, overflow-x:hidden, box-sizing:border-box ──
+    <div style={{
+      background: '#f8f4ee',
+      minHeight: '100vh',
+      width: '100%',
+      boxSizing: 'border-box',
+      overflowX: 'hidden',
+    }}>
 
       {/* ── NAV ── */}
       <nav style={{
@@ -121,6 +127,7 @@ export default function Home() {
         background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
         padding: '0 24px', display: 'flex', alignItems: 'center',
         justifyContent: 'space-between', height: '60px',
+        boxSizing: 'border-box', width: '100%',
       }}>
         <button onClick={() => setMenuOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '5px' }}>
           <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
@@ -194,11 +201,15 @@ export default function Home() {
         </>
       )}
 
-      {/* ── LANDING (solo visible cuando catalogo está oculto) ── */}
+      {/* ── LANDING ── */}
       {!catalogoVisible && (
         <>
-          {/* ── HERO ── */}
-          <section id="hero" style={{ padding: '40px 24px 32px', borderBottom: '1px solid #e0d8cc' }}>
+          <section id="hero" style={{
+            padding: '40px 24px 32px',
+            borderBottom: '1px solid #e0d8cc',
+            boxSizing: 'border-box',
+            width: '100%',
+          }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
               <p style={{ fontSize: '11px', letterSpacing: '4px', color: '#888', textTransform: 'uppercase', marginBottom: '12px' }}>
                 Monterrey · Envíos a todo México
@@ -215,13 +226,19 @@ export default function Home() {
           </section>
 
           {/* ── CATEGORÍAS ── */}
-          <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #e0d8cc' }}>
+          <section style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            borderBottom: '1px solid #e0d8cc',
+            width: '100%',
+            boxSizing: 'border-box',
+          }}>
             {[
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
             ].map((cat, i) => (
-              <div key={i} onClick={() => setFilter(cat.filtroKey, cat.filtroVal)}
+              <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { const el = document.getElementById('catalogo'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 350) }}
                 style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', minHeight: '420px' }}>
                 <img src={cat.foto} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
                   onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
@@ -239,7 +256,10 @@ export default function Home() {
           {/* ── FILTROS ── */}
           <div id="catalogo" style={{
             position: 'sticky', top: '60px', zIndex: 90,
-            background: '#f8f4ee', borderBottom: '1px solid #e0d8cc', padding: '10px 24px',
+            background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
+            padding: '10px 24px',
+            boxSizing: 'border-box',
+            width: '100%',
           }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto' }}>
               <input type="text" placeholder="Buscar..." value={activeFilter.search}
@@ -273,80 +293,125 @@ export default function Home() {
           </div>
 
           {/* ── GRID ── */}
-          <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
-            {loading ? (
-              <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Cargando...</div>
-            ) : playeras.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Sin resultados</div>
-            ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1px' }}>
-                {playeras.map(p => {
-                  const nombre = p.nombre_display || 'Playera retro'
-                  const imagen = p.foto_portada || null
-                  const hov = hoveredId === p.id
-                  return (
-                    <div key={p.id}
-                      onMouseEnter={() => setHoveredId(p.id)}
-                      onMouseLeave={() => setHoveredId(null)}
-                      onClick={() => openPlayera(p)}
-                      style={{ background: '#f8f4ee', position: 'relative', overflow: 'hidden', cursor: 'pointer', boxShadow: '1px 0 0 #e0d8cc, 0 1px 0 #e0d8cc' }}>
-                      <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
-                        {imagen ? (
-                          <img src={imagen} alt={nombre}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)' }}
-                            onError={e => { e.target.style.display = 'none' }}
-                          />
-                        ) : (
-                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🎽</div>
-                        )}
+          {/* FIX: el section ocupa todo el ancho sin maxWidth,
+              el padding se aplica solo a los controles de paginación,
+              el grid corre de borde a borde dentro del maxWidth wrapper */}
+          <section style={{
+            width: '100%',
+            boxSizing: 'border-box',
+            padding: '32px 0 0',
+          }}>
+            <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px', boxSizing: 'border-box' }}>
+              {loading ? (
+                <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Cargando...</div>
+              ) : playeras.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Sin resultados</div>
+              ) : (
+                // FIX GRID: background del gap = color del borde, sin boxShadow roto
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                  gap: '1px',
+                  background: '#e0d8cc',
+                  border: '1px solid #e0d8cc',
+                  boxSizing: 'border-box',
+                  width: '100%',
+                }}>
+                  {playeras.map(p => {
+                    const nombre = p.nombre_display || 'Playera retro'
+                    const imagen = p.foto_portada || null
+                    const hov = hoveredId === p.id
+                    return (
+                      <div key={p.id}
+                        onMouseEnter={() => setHoveredId(p.id)}
+                        onMouseLeave={() => setHoveredId(null)}
+                        onClick={() => openPlayera(p)}
+                        style={{
+                          background: '#f8f4ee',
+                          position: 'relative',
+                          overflow: 'hidden',
+                          cursor: 'pointer',
+                          // sin boxShadow — el gap con background hace los bordes
+                        }}>
+                        <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
+                          {imagen ? (
+                            <img src={imagen} alt={nombre}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)' }}
+                              onError={e => { e.target.style.display = 'none' }}
+                            />
+                          ) : (
+                            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🎽</div>
+                          )}
+                        </div>
+                        <div style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
+                          <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '5px' }}>
+                            {p.liga || 'Jersey'}{p.anio ? ` · ${p.anio}` : ''}
+                          </p>
+                          <p style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
+                            {nombre}
+                          </p>
+                          {p.edicion_especial && ediciones[p.edicion_especial] && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
+                              <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />
+                              <span style={{ fontSize: '9px', letterSpacing: '1.5px', color: '#888', textTransform: 'uppercase' }}>{p.edicion_especial}</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
-                        <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '5px' }}>
-                          {p.liga || 'Jersey'}{p.anio ? ` · ${p.anio}` : ''}
-                        </p>
-                        <p style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
-                          {nombre}
-                        </p>
-                        {p.edicion_especial && ediciones[p.edicion_especial] && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
-                            <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />
-                            <span style={{ fontSize: '9px', letterSpacing: '1.5px', color: '#888', textTransform: 'uppercase' }}>{p.edicion_especial}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
+                    )
+                  })}
+                </div>
+              )}
 
-            {totalPages > 1 && (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '48px' }}>
-                <button onClick={() => setPage(p => Math.max(0, p-1))} disabled={page === 0}
-                  style={{ background: 'none', border: '1px solid #ccc', padding: '10px 24px', fontSize: '11px', letterSpacing: '2px', cursor: page === 0 ? 'not-allowed' : 'pointer', color: page === 0 ? '#ccc' : '#1a1a1a', textTransform: 'uppercase' }}>
-                  ← Anterior
-                </button>
-                <span style={{ display: 'flex', alignItems: 'center', fontSize: '11px', letterSpacing: '2px', color: '#aaa' }}>
-                  {page+1} / {totalPages}
-                </span>
-                <button onClick={() => setPage(p => Math.min(totalPages-1, p+1))} disabled={page === totalPages-1}
-                  style={{ background: page === totalPages-1 ? '#eee' : '#1a1a1a', border: '1px solid #1a1a1a', padding: '10px 24px', fontSize: '11px', letterSpacing: '2px', cursor: page === totalPages-1 ? 'not-allowed' : 'pointer', color: page === totalPages-1 ? '#aaa' : '#f8f4ee', textTransform: 'uppercase' }}>
-                  Siguiente →
-                </button>
-              </div>
-            )}
+              {totalPages > 1 && (
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '48px', marginBottom: '48px' }}>
+                  <button onClick={() => setPage(p => Math.max(0, p-1))} disabled={page === 0}
+                    style={{ background: 'none', border: '1px solid #ccc', padding: '10px 24px', fontSize: '11px', letterSpacing: '2px', cursor: page === 0 ? 'not-allowed' : 'pointer', color: page === 0 ? '#ccc' : '#1a1a1a', textTransform: 'uppercase' }}>
+                    ← Anterior
+                  </button>
+                  <span style={{ display: 'flex', alignItems: 'center', fontSize: '11px', letterSpacing: '2px', color: '#aaa' }}>
+                    {page+1} / {totalPages}
+                  </span>
+                  <button onClick={() => setPage(p => Math.min(totalPages-1, p+1))} disabled={page === totalPages-1}
+                    style={{ background: page === totalPages-1 ? '#eee' : '#1a1a1a', border: '1px solid #1a1a1a', padding: '10px 24px', fontSize: '11px', letterSpacing: '2px', cursor: page === totalPages-1 ? 'not-allowed' : 'pointer', color: page === totalPages-1 ? '#aaa' : '#f8f4ee', textTransform: 'uppercase' }}>
+                    Siguiente →
+                  </button>
+                </div>
+              )}
+            </div>
           </section>
         </>
       )}
 
       {/* ── FOOTER ── */}
-      <footer id="footer" style={{ padding: '24px', marginTop: '200px', borderTop: '1px solid #e0d8cc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+      <footer id="footer" style={{
+        padding: '24px',
+        marginTop: '200px',
+        borderTop: '1px solid #e0d8cc',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '8px',
+        boxSizing: 'border-box',
+        width: '100%',
+      }}>
         <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '14px', letterSpacing: '2px', color: '#aaa' }}>DERBY 86</p>
         <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#ccc' }}>Monterrey, NL · Envíos a todo México · @derby.86</p>
       </footer>
 
       {/* ── CTA ── */}
-      <section id="cta" style={{ background: '#1a1a1a', padding: '48px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+      <section id="cta" style={{
+        background: '#1a1a1a',
+        padding: '48px 24px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '20px',
+        boxSizing: 'border-box',
+        width: '100%',
+      }}>
         <div>
           <p style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(20px, 4vw, 36px)', color: '#f8f4ee', letterSpacing: '2px', marginBottom: '8px' }}>¿BUSCAS UNA ESPECIAL?</p>
           <p style={{ fontSize: '13px', color: '#666', letterSpacing: '1px' }}>Escríbenos y la conseguimos · @derby.86</p>
