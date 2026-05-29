@@ -205,7 +205,7 @@ export default function Home() {
 
       {/* ── LANDING ── */}
       {!catalogoVisible && (
-        <div style={{ height: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ minHeight: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column'}}>
           <section id="hero" style={{
             padding: '40px 24px 32px',
             borderBottom: '1px solid #e0d8cc',
@@ -236,7 +236,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
-            height: '60vh',
+            height: '45vh',
             minHeight: '260px',
             maxHeight: '430px',
             overflow: 'hidden'
@@ -257,6 +257,7 @@ export default function Home() {
 
                {/* ── FOOTER aquí, FUERA del map, DENTRO del div ── */}
                 <footer id="footer" style={{
+                  marginTop: 'auto',
                   padding: '24px',
                   borderTop: '1px solid #e0d8cc',
                   display: 'flex',
