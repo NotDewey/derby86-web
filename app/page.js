@@ -214,35 +214,34 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-            <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-              <p style={{ fontSize: '11px', letterSpacing: '4px', color: '#888', textTransform: 'uppercase', marginBottom: '12px' }}>
-                Monterrey · Envíos a todo México
-              </p>
-              <div style={{ position: 'relative' }}>
-                <h1 style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(28px, 5.5vw, 62px)', color: '#1a1a1a', letterSpacing: '2px', lineHeight: 1, whiteSpace: 'nowrap' }}>
-                  PLAYERAS DE FÚTBOL RETRO
-                </h1>
-                <p style={{ fontSize: '14px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', position: 'absolute', bottom: '0', right: '0' }}>
+             <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div>
+                  <p style={{ fontSize: '11px', letterSpacing: '4px', color: '#888', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    Monterrey · Envíos a todo México
+                  </p>
+                  <h1 style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(28px, 5.5vw, 62px)', color: '#1a1a1a', letterSpacing: '2px', lineHeight: 1, whiteSpace: 'nowrap' }}>
+                    PLAYERAS DE FÚTBOL RETRO
+                  </h1>
+                </div>
+                <p style={{ fontSize: '14px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
                   Somos aficionados del fútbol. Selecciones, clubes y ediciones especiales de todo el mundo.
                 </p>
               </div>
-            </div>
-          </section>
+            </section>
 
           {/* ── CATEGORÍAS ── */}
           <section style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+            gridTemplateColumns: '1fr 1fr',
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
-            flex: 1,
+            flex: '65vh',
             minHeight: 0,
           }}>
             {[
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
-              { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
             ].map((cat, i) => (
               <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { const el = document.getElementById('catalogo'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 350) }}
                 style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', height: '100%' }}>
