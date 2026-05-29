@@ -236,8 +236,10 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
-            flex: '45vh',
-            minHeight: 0,
+            height: '35vh',
+            minHeight: '260px',
+            maxHeight: '430px',
+            overflow: 'hidden'
           }}>
             {[
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
