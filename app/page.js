@@ -38,18 +38,42 @@ export default function Home() {
 
   const scrollToSection = (section) => {
     setMenuOpen(false)
+  
     if (section === 'catalogo') {
       setCatalogoVisible(true)
+  
       setTimeout(() => {
-        const el = document.getElementById('catalogo')
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 350)
-    } else {
-      if (section === 'hero') setCatalogoVisible(false)
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }, 300)
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }, 100)
+  
+      return
     }
+  
+    if (section === 'hero') {
+      setCatalogoVisible(false)
+  
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }, 100)
+  
+      return
+    }
+  
+    setTimeout(() => {
+      const el = document.getElementById(section)
+      if (el) {
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }, 100)
   }
 
   const fetchPlayeras = useCallback(async () => {
@@ -167,7 +191,7 @@ export default function Home() {
               animation: 'fadeUp 0.4s ease-out 0.1s both',
             }}/>
             {[
-              { label: 'Inicio',    id: 'hero' },
+              { label: 'Inicio',   id: 'hero' },
               { label: 'Catálogo', id: 'catalogo' },
               { label: 'Contacto', id: 'cta' },
               { label: 'Envíos',   id: 'cta' },
