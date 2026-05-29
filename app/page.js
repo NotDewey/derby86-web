@@ -211,7 +211,6 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             boxSizing: 'border-box',
             width: '100%',
-            height: 'calc(100vh - 60px)',
             display: 'flex',
             flexDirection: 'column',
           }}>
@@ -238,6 +237,7 @@ export default function Home() {
             width: '100%',
             boxSizing: 'border-box',
             flex: 1,
+            minHeight: 0,
           }}>
             {[
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
