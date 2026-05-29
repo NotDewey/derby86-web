@@ -245,7 +245,7 @@ export default function Home() {
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
             ].map((cat, i) => (
-              <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { const el = document.getElementById('catalogo'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 350) }}
+              <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth'}); }, 100); }}
                 style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', height: '100%' }}>
                 <img src={cat.foto} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
                   onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
