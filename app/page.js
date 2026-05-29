@@ -211,6 +211,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             boxSizing: 'border-box',
             width: '100%',
+            height: 'calc(100vh - 60px)',
             display: 'flex',
             flexDirection: 'column',
           }}>
