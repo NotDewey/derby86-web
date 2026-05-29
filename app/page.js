@@ -253,6 +253,21 @@ export default function Home() {
               </div>
             ))}
           </section>
+               {/* ── FOOTER aquí, FUERA del map, DENTRO del div ── */}
+                <footer id="footer" style={{
+                  padding: '24px',
+                  borderTop: '1px solid #e0d8cc',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '8px',
+                  boxSizing: 'border-box',
+                  width: '100%',
+                }}>
+                  <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '14px', letterSpacing: '2px', color: '#aaa' }}>DERBY 86</p>
+                  <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#ccc' }}>Monterrey, NL · Envíos a todo México · @derby.86</p>
+                </footer>
         </div>
       )}
 
@@ -389,23 +404,6 @@ export default function Home() {
           </section>
         </>
       )}
-
-      {/* ── FOOTER ── */}
-      <footer id="footer" style={{
-        padding: '24px',
-        marginTop: '0',
-        borderTop: '1px solid #e0d8cc',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '8px',
-        boxSizing: 'border-box',
-        width: '100%',
-      }}>
-        <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '14px', letterSpacing: '2px', color: '#aaa' }}>DERBY 86</p>
-        <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#ccc' }}>Monterrey, NL · Envíos a todo México · @derby.86</p>
-      </footer>
 
       {/* ── CTA ── */}
       <section id="cta" style={{
