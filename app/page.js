@@ -236,7 +236,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
-            height: '35vh',
+            height: '60vh',
             minHeight: '260px',
             maxHeight: '430px',
             overflow: 'hidden'
@@ -254,6 +254,7 @@ export default function Home() {
               </div>
             ))}
           </section>
+
                {/* ── FOOTER aquí, FUERA del map, DENTRO del div ── */}
                 <footer id="footer" style={{
                   padding: '24px',
