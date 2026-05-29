@@ -119,6 +119,8 @@ export default function Home() {
       width: '100%',
       boxSizing: 'border-box',
       overflowX: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
     }}>
 
       {/* ── NAV ── */}
@@ -203,12 +205,14 @@ export default function Home() {
 
       {/* ── LANDING ── */}
       {!catalogoVisible && (
-        <>
+        <div style={{ height: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column' }}>
           <section id="hero" style={{
             padding: '40px 24px 32px',
             borderBottom: '1px solid #e0d8cc',
             boxSizing: 'border-box',
             width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
           }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
               <p style={{ fontSize: '11px', letterSpacing: '4px', color: '#888', textTransform: 'uppercase', marginBottom: '12px' }}>
@@ -232,6 +236,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
+            flex: 1,
           }}>
             {[
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
@@ -239,7 +244,7 @@ export default function Home() {
               { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
             ].map((cat, i) => (
               <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { const el = document.getElementById('catalogo'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 350) }}
-                style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', minHeight: '420px' }}>
+                style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', height: '100%' }}>
                 <img src={cat.foto} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
                   onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
                   onMouseLeave={e => e.target.style.transform = 'scale(1)'}
@@ -387,7 +392,7 @@ export default function Home() {
       {/* ── FOOTER ── */}
       <footer id="footer" style={{
         padding: '24px',
-        marginTop: '200px',
+        marginTop: '0',
         borderTop: '1px solid #e0d8cc',
         display: 'flex',
         justifyContent: 'space-between',
