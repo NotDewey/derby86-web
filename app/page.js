@@ -236,7 +236,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             width: '100%',
             boxSizing: 'border-box',
-            flex: '65vh',
+            flex: '45vh',
             minHeight: 0,
           }}>
             {[
