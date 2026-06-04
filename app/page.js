@@ -284,7 +284,7 @@ export default function Home() {
               ].map((cat, i) => (
                 <div key={i}
                   onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
-                  onMouseEnter={
+                  onMouseEnter={() => {
                     const timer = setTimeout(() => setHoveredCarousel(cat.foto), 5000)
                     setHoverTimer(timer)
                   }}
