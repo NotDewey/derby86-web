@@ -264,7 +264,7 @@ export default function Home() {
             borderBottom: '1px solid #e0d8cc',
             height: '45vh',
             minHeight: '260px',
-            maxHeight: '430px',
+            maxHeight: '530px',
           }}>
             <div style={{
               display: 'flex',
@@ -463,7 +463,7 @@ export default function Home() {
           animation: 'fadeIn 0.2s ease-out',
         }}>
           <button onClick={() => setHoveredCarousel(null)} style={{
-            position: 'absolute', top: '140px', left: '200px',
+            position: 'absolute', top: '185px', left: '200px',
             background: 'rgba(255,255,255,0.2)',
             border: '1px solid rgba(255,255,255,0.4)',
             borderRadius: '50%',
