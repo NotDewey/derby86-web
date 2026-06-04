@@ -285,13 +285,12 @@ export default function Home() {
                 <div key={i}
                   onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
                   onMouseEnter={() => {
-                    const timer = setTimeout(() => setHoveredCarousel(cat.foto), 5000)
+                    const timer = setTimeout(() => setHoveredCarousel(cat.foto), 3000)
                     setHoverTimer(timer)
                   }}
                   onMouseLeave={() => {
                     clearTimeout(hoverTimer)
                     setHoverTimer(null)
-                    setHoveredCarousel(null)
                   }}
                   style={{
                     cursor: 'pointer',
@@ -461,9 +460,19 @@ export default function Home() {
           WebkitBackdropFilter: 'blur(24px) saturate(1.3)',
           background: 'rgba(0,0,0,0.4)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          pointerEvents: 'none',
           animation: 'fadeIn 0.2s ease-out',
         }}>
+          <button onClick={() => setHoveredCarousel(null)} style={{
+            position: 'absolute', top: '24px', right: '24px',
+            background: 'rgba(255,255,255,0.2)',
+            border: '1px solid rgba(255,255,255,0.4)',
+            borderRadius: '50%',
+            width: '44px', height: '44px',
+            color: 'white', fontSize: '20px',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backdropFilter: 'blur(8px)',
+          }}>✕</button>
           <img src={hoveredCarousel} alt="" style={{
             maxWidth: '85vw',
             maxHeight: '80vh',
