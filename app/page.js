@@ -463,7 +463,7 @@ export default function Home() {
         }}>
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <button onClick={() => setHoveredCarousel(null)} style={{
-              position: 'absolute', top: '-18px', left: '-18px',
+              position: 'absolute', top: '-50px', left: '-50px',
               background: 'rgba(255,255,255,0.2)',
               border: '1px solid rgba(255,255,255,0.4)',
               borderRadius: '50%',
