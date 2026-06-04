@@ -463,7 +463,7 @@ export default function Home() {
           animation: 'fadeIn 0.2s ease-out',
         }}>
           <button onClick={() => setHoveredCarousel(null)} style={{
-            position: 'absolute', top: '85px', left: '200px',
+            position: 'absolute', top: '50px', left: '200px',
             background: 'rgba(255,255,255,0.2)',
             border: '1px solid rgba(255,255,255,0.4)',
             borderRadius: '50%',
