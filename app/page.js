@@ -283,9 +283,9 @@ export default function Home() {
                 
               ].map((cat, i) => (
                 <div key={i}
-                  onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
+                  onClick={() => { clearTimeout(hoverTimer); setHoverTimer(null); setHoveredCarousel(null); setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
                   onMouseEnter={() => {
-                    const timer = setTimeout(() => setHoveredCarousel(cat.foto), 3000)
+                    const timer = setTimeout(() => setHoveredCarousel(cat.foto), 2500)
                     setHoverTimer(timer)
                   }}
                   onMouseLeave={() => {
@@ -463,7 +463,7 @@ export default function Home() {
           animation: 'fadeIn 0.2s ease-out',
         }}>
           <button onClick={() => setHoveredCarousel(null)} style={{
-            position: 'absolute', top: '24px', right: '24px',
+            position: 'absolute', top: '140px', left: '200px',
             background: 'rgba(255,255,255,0.2)',
             border: '1px solid rgba(255,255,255,0.4)',
             borderRadius: '50%',
