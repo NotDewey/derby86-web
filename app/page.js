@@ -23,6 +23,7 @@ export default function Home() {
   const [loadingFotos, setLoadingFotos] = useState(false)
   const [ediciones, setEdiciones]     = useState({})
   const [catalogoVisible, setCatalogoVisible] = useState(false)
+  const [hoveredCarousel, setHoveredCarousel] = useState(null)
 
   useEffect(() => {
     if (!catalogoVisible) return
@@ -253,31 +254,60 @@ export default function Home() {
               </div>
             </section>
 
-          {/* ── CATEGORÍAS ── */}
-          <section style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+          {/* ── CARRUSEL ── */}
+          <div style={{
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
             borderBottom: '1px solid #e0d8cc',
-            width: '100%',
-            boxSizing: 'border-box',
             height: '45vh',
             minHeight: '260px',
             maxHeight: '430px',
-            overflow: 'hidden'
           }}>
-            {[
-              { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
-              { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
-            ].map((cat, i) => (
-              <div key={i} onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth'}); }, 100); }}
-                style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden', borderRight: i < 2 ? '1px solid #e0d8cc' : 'none', height: '100%' }}>
-                <img src={cat.foto} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-                  onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={e => e.target.style.transform = 'scale(1)'}
-                />
-              </div>
-            ))}
-          </section>
+            <div style={{
+              display: 'flex',
+              height: '100%',
+              width: 'max-content',
+            }}>
+              {[
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/duo-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/ronaldo-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/sitting-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/solo-photo.JPG' },
+                
+              ].map((cat, i) => (
+                <div key={i}
+                  onClick={() => { setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
+                  onMouseEnter={() => setHoveredCarousel(cat.foto)}
+                  onMouseLeave={() => setHoveredCarousel(null)}
+                  style={{
+                    cursor: 'pointer',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    height: '100%',
+                    width: '50vw',
+                    minWidth: '300px',
+                    flexShrink: 0,
+                    borderRight: '1px solid #e0d8cc',
+                  }}>
+                  <img src={cat.foto} alt="" style={{
+                    position: 'absolute', inset: 0,
+                    width: '100%', height: '100%',
+                    objectFit: 'cover',
+                    transition: 'transform 0.4s',
+                  }}
+                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
@@ -413,6 +443,27 @@ export default function Home() {
             </div>
           </section>
         </>
+      )}
+
+      {/* ── POPUP HOVER ── */}
+      {hoveredCarousel && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 400,
+          backdropFilter: 'blur(24px) saturate(1.3)',
+          WebkitBackdropFilter: 'blur(24px) saturate(1.3)',
+          background: 'rgba(0,0,0,0.4)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          pointerEvents: 'none',
+          animation: 'fadeIn 0.2s ease-out',
+        }}>
+          <img src={hoveredCarousel} alt="" style={{
+            maxWidth: '85vw',
+            maxHeight: '80vh',
+            objectFit: 'contain',
+            borderRadius: '16px',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+          }}/>
+        </div>
       )}
 
       {/* ── FOOTER aquí, FUERA del map, DENTRO del div ── */}
