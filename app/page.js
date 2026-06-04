@@ -275,10 +275,9 @@ export default function Home() {
                 { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
                 { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
                 { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/duo-photo.JPG' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/ronaldo-photo.JPG' },
                 { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/sitting-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/duo-photo.JPG' },
+                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/ronaldo-photo.JPG' },
                 { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/solo-photo.JPG' },
                 
               ].map((cat, i) => (
@@ -462,24 +461,28 @@ export default function Home() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           animation: 'fadeIn 0.2s ease-out',
         }}>
-          <button onClick={() => setHoveredCarousel(null)} style={{
-            position: 'absolute', top: '50px', left: '200px',
-            background: 'rgba(255,255,255,0.2)',
-            border: '1px solid rgba(255,255,255,0.4)',
-            borderRadius: '50%',
-            width: '44px', height: '44px',
-            color: 'white', fontSize: '20px',
-            cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            backdropFilter: 'blur(8px)',
-          }}>✕</button>
-          <img src={hoveredCarousel} alt="" style={{
-            maxWidth: '85vw',
-            maxHeight: '80vh',
-            objectFit: 'contain',
-            borderRadius: '16px',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
-          }}/>
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <button onClick={() => setHoveredCarousel(null)} style={{
+              position: 'absolute', top: '-18px', left: '-18px',
+              background: 'rgba(255,255,255,0.2)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              borderRadius: '50%',
+              width: '44px', height: '44px',
+              color: 'white', fontSize: '20px',
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              backdropFilter: 'blur(8px)',
+              zIndex: 1,
+            }}>✕</button>
+            <img src={hoveredCarousel} alt="" style={{
+              maxWidth: '85vw',
+              maxHeight: '80vh',
+              objectFit: 'contain',
+              borderRadius: '16px',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+              display: 'block',
+            }}/>
+          </div>
         </div>
       )}
 
