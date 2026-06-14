@@ -154,8 +154,6 @@ export default function Home() {
     equipo
       .replace('Selección de ', '')
       .replace('Selección ', '')
-
-  return (
   
   useEffect(() => {
     if (!catalogoVisible) return
