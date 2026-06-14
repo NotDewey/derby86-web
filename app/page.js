@@ -460,6 +460,7 @@ export default function Home() {
                     width: '100%', height: '100%',
                     objectFit: 'cover',
                     transition: 'transform 0.4s',
+                    animation: 'fadeIn 0.6s ease-out',
                   }}
                     onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
                     onMouseLeave={e => e.target.style.transform = 'scale(1)'}
@@ -525,7 +526,7 @@ export default function Home() {
                                 borderRadius: '2px', overflow: 'hidden',
                               }}>
                                 <img src={ligaLogo} alt={l}
-                                  style={{ width: '20px', height: '20px', objectFit: 'contain' }}
+                                  style={{ width: '20px', height: '20px', objectFit: 'contain', , animation: 'fadeIn 0.4s ease-out'}}
                                 />
                               </div>
                             )}
@@ -567,7 +568,7 @@ export default function Home() {
                                 borderRadius: '2px', overflow: 'hidden',
                               }}>
                                 <img src={logoUrl} alt={equipo}
-                                  style={{ width: '22px', height: '22px', objectFit: 'contain' }}
+                                  style={{ width: '22px', height: '22px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}
                                 />
                               </div>
                             )}
@@ -649,7 +650,7 @@ export default function Home() {
                         <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
                           {imagen ? (
                             <img src={imagen} alt={nombre}
-                              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)' }}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)', animation: 'fadeIn 0.6s ease-out' }}
                               onError={e => { e.target.style.display = 'none' }}
                             />
                           ) : (
