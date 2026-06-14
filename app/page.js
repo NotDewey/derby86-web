@@ -497,10 +497,10 @@ export default function Home() {
                 {/* Botón volver — solo cuando hay liga seleccionada */}
                 {showEquipos && (
                   <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
-                    background: 'transparent', border: '1px solid #1a1a1a',
+                    background: '1a1a1a', border: '1px solid #1a1a1a',
                     borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
                     letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                    color: '#1a1a1a', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
+                    color: '#f8f4ee', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
                     fontWeight: 600,
                   }}>← {activeFilter.liga}</button>
                 )}
@@ -578,7 +578,7 @@ export default function Home() {
               transition: 'opacity 0.2s ease',
               animation: 'fadeIn 0.25s ease-out',
             }}>
-              <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
+              <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', justifyContent: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
                 {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
                   const logoUrl = EQUIPOS_LOGOS[equipo]
                   const isActive = activeFilter.equipo === equipo
