@@ -317,7 +317,7 @@ export default function Home() {
             background: 'none', border: 'none', cursor: 'pointer', padding: 0,
           }}
         >
-          <img src={LOGO_SVG} alt="Derby 86 logo" style={{ width: '40px', height: '40px', borderRadius: '50%' }}/>
+          <img src={LOGO_SVG} alt="Derby 86 logo" style={{ width: '52px', height: '52px', borderRadius: '50%' }}/>
           <div>
             <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '20px', letterSpacing: '2px', color: '#1a1a1a', lineHeight: 1 }}>DERBY 86</p>
             <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>Football Jerseys</p>
