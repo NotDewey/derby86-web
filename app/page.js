@@ -58,7 +58,7 @@ const EQUIPOS_LOGOS = {
   'Arsenal':               logo('Premier League/england_arsenal.football-logos.cc.svg'),
   'Aston Villa':           logo('Premier League/england_aston-villa.football-logos.cc.svg'),
   'Chelsea':               logo('Premier League/england_chelsea.football-logos.cc.svg'),
-  'Everton':               logo('Premier League/england_english-premier-league.football-logos.cc.svg'),
+  'Everton':               logo('Premier League/england_everton.football-logos.cc.svg'),
   'Leeds United':          logo('Premier League/england_leeds-united.football-logos.cc.svg'),
   'Liverpool':             logo('Premier League/england_liverpool.football-logos.cc.svg'),
   'Manchester City':       logo('Premier League/england_manchester-city.football-logos.cc.svg'),
@@ -119,6 +119,16 @@ const EQUIPOS_POR_LIGA = {
   'Ligue 1':        ['Paris Saint-Germain','Olympique de Lyon','Olympique de Marsella','Mónaco'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
   'Otro':           ['Ajax','Boca Juniors','River Plate','Flamengo','Corinthians','Palmeiras','Santos FC','São Paulo','Botafogo','Benfica','Porto','Celtic','Rangers','Los Ángeles Galaxy','D.C. United','Tokyo Verdy','Kaizer Chiefs','Cork City','Cordoba CF'],
+}
+
+const LIGAS_LOGOS = {
+  'Selección':      logo('Selecciones/fifa.svg'), // placeholder, cambia por el logo que tengas de selecciones
+  'La Liga':        logo('La Liga/spain_la-liga.football-logos.cc.svg'),
+  'Premier League': logo('Premier League/england_english-premier-league.football-logos.cc.svg'),
+  'Serie A':        logo('Serie A/italy_serie-a.football-logos.cc.svg'),
+  'Bundesliga':     logo('Bundesliga/germany_bundesliga.football-logos.cc.svg'),
+  'Ligue 1':        logo('Ligue 1/france_ligue-1.football-logos.cc.svg'),
+  'Liga MX':        logo('Liga Mx/mexico_liga-mx.football-logos.cc.svg'),
 }
 
 export default function Home() {
@@ -484,16 +494,35 @@ export default function Home() {
                   {!showEquipos ? (
                     /* ── Botones de liga ── */
                     <>
-                      {LIGAS.map(l => (
-                        <button key={l} onClick={() => setFilter('liga', l)} style={{
-                          background: activeFilter.liga === l ? '#1a1a1a' : 'transparent',
-                          color: activeFilter.liga === l ? '#f8f4ee' : '#888',
-                          border: `1px solid ${activeFilter.liga === l ? '#1a1a1a' : '#ddd'}`,
-                          borderRadius: '2px', padding: '4px 10px', fontSize: '11px',
-                          letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                          textTransform: 'uppercase', flexShrink: 0,
-                        }}>{l}</button>
-                      ))}
+                      {LIGAS.map(l => {
+                        const ligaLogo = LIGAS_LOGOS[l]
+                        const isActive = activeFilter.liga === l
+                        return (
+                          <button key={l} onClick={() => setFilter('liga', l)} style={{
+                            display: 'flex', alignItems: 'center', gap: '5px',
+                            background: isActive ? '#1a1a1a' : 'transparent',
+                            color: isActive ? '#f8f4ee' : '#888',
+                            border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                            borderRadius: '2px', padding: ligaLogo ? '3px 10px 3px 4px' : '4px 10px',
+                            fontSize: '11px', letterSpacing: '1px', cursor: 'pointer',
+                            whiteSpace: 'nowrap', textTransform: 'uppercase', flexShrink: 0,
+                          }}>
+                            {ligaLogo && (
+                              <div style={{
+                                width: '20px', height: '20px', flexShrink: 0,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
+                                borderRadius: '2px', overflow: 'hidden',
+                              }}>
+                                <img src={ligaLogo} alt={l}
+                                  style={{ width: '16px', height: '16px', objectFit: 'contain' }}
+                                />
+                              </div>
+                            )}
+                            {l}
+                          </button>
+                        )
+                      })}
                     </>
                   ) : (
                     /* ── Carrusel de equipos con escudo ── */
