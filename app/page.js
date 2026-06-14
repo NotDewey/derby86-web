@@ -476,6 +476,7 @@ export default function Home() {
       {catalogoVisible && (
         <>
           {/* ── FILTROS ── */}
+          {/* ── BARRA 1: Buscar + Ligas + Épocas ── */}
           <div id="catalogo" style={{
             position: 'sticky', top: '60px', zIndex: 90,
             background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
@@ -484,105 +485,64 @@ export default function Home() {
             width: '100%',
           }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto', boxSizing: 'border-box' }}>
-          
-              {/* ── FILA 1: search + ligas/equipos + épocas ── */}
               <div style={{ display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
           
-                {/* Buscar */}
+                {/* Buscar — se agranda cuando hay liga seleccionada */}
                 <input type="text" placeholder="Buscar..." value={activeFilter.search}
                   onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
-                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '120px', flexShrink: 0 }}
+                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: showEquipos ? '200px' : '120px', flexShrink: 0, transition: 'width 0.3s ease' }}
                 />
                 <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
           
-                {/* LIGAS o EQUIPOS con fade */}
+                {/* Botón volver — solo cuando hay liga seleccionada */}
+                {showEquipos && (
+                  <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
+                    background: 'transparent', border: '1px solid #1a1a1a',
+                    borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
+                    letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
+                    color: '#1a1a1a', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
+                    fontWeight: 600,
+                  }}>← {activeFilter.liga}</button>
+                )}
+          
+                {/* Ligas — con blur cuando hay liga seleccionada */}
                 <div style={{
                   display: 'flex', gap: '6px', alignItems: 'center',
-                  flex: showEquipos ? 'none' : 1,
-                  overflowX: 'auto', scrollbarWidth: 'none',
+                  flex: 1, overflowX: 'auto', scrollbarWidth: 'none',
                   opacity: equiposFading ? 0 : 1,
-                  transition: 'opacity 0.2s ease',
+                  transition: 'opacity 0.2s ease, filter 0.2s ease',
+                  filter: showEquipos ? 'blur(1.5px)' : 'none',
+                  pointerEvents: showEquipos ? 'none' : 'auto',
                 }}>
-                  {!showEquipos ? (
-                    /* ── Botones de liga ── */
-                    <>
-                      {LIGAS.map(l => {
-                        const ligaLogo = LIGAS_LOGOS[l]
-                        const isActive = activeFilter.liga === l
-                        return (
-                          <button key={l} onClick={() => setFilter('liga', l)} style={{
-                            display: 'flex', alignItems: 'center', gap: '5px',
-                            background: isActive ? '#1a1a1a' : 'transparent',
-                            color: isActive ? '#f8f4ee' : '#888',
-                            border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
-                            borderRadius: '2px', padding: ligaLogo ? '5px 13px 5px 5px' : '6px 13px',
-                            fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
-                            whiteSpace: 'nowrap', textTransform: 'uppercase', flexShrink: 0,
+                  {LIGAS.map(l => {
+                    const ligaLogo = LIGAS_LOGOS[l]
+                    const isActive = activeFilter.liga === l
+                    return (
+                      <button key={l} onClick={() => setFilter('liga', l)} style={{
+                        display: 'flex', alignItems: 'center', gap: '5px',
+                        background: isActive ? '#1a1a1a' : 'transparent',
+                        color: isActive ? '#f8f4ee' : '#888',
+                        border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                        borderRadius: '2px', padding: ligaLogo ? '5px 13px 5px 5px' : '6px 13px',
+                        fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                        whiteSpace: 'nowrap', textTransform: 'uppercase', flexShrink: 0,
+                      }}>
+                        {ligaLogo && (
+                          <div style={{
+                            width: '26px', height: '26px', flexShrink: 0,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
+                            borderRadius: '2px', overflow: 'hidden',
                           }}>
-                            {ligaLogo && (
-                              <div style={{
-                                width: '26px', height: '26px', flexShrink: 0,
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
-                                borderRadius: '2px', overflow: 'hidden',
-                              }}>
-                                <img src={ligaLogo} alt={l}
-                                  style={{ width: '20px', height: '20px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out'}}
-                                />
-                              </div>
-                            )}
-                            {l}
-                          </button>
-                        )
-                      })}
-                    </>
-                  ) : (
-                    /* ── Carrusel de equipos con escudo ── */
-                    <>
-                      {/* Botón volver */}
-                      <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
-                        background: 'transparent', border: '1px solid #ddd',
-                        borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
-                        letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                        color: '#888', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
-                      }}>← {activeFilter.liga}</button>
-                      <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
-          
-                      {/* Chips de equipos */}
-                      {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
-                        const logoUrl = EQUIPOS_LOGOS[equipo]
-                        const isActive = activeFilter.equipo === equipo
-                        return (
-                          <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
-                            display: 'flex', alignItems: 'center', gap: '6px',
-                            background: isActive ? '#1a1a1a' : 'transparent',
-                            border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
-                            borderRadius: '2px', padding: '5px 13px 5px 5px',
-                            cursor: 'pointer', flexShrink: 0,
-                            transition: 'all 0.15s',
-                          }}>
-                            {logoUrl && (
-                              <div style={{
-                                width: '28px', height: '28px', flexShrink: 0,
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
-                                borderRadius: '2px', overflow: 'hidden',
-                              }}>
-                                <img src={logoUrl} alt={equipo}
-                                  style={{ width: '22px', height: '22px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}
-                                />
-                              </div>
-                            )}
-                            <span style={{
-                              fontSize: '13px', letterSpacing: '0.5px',
-                              color: isActive ? '#f8f4ee' : '#888',
-                              whiteSpace: 'nowrap', textTransform: 'uppercase',
-                            }}>{shortName(equipo)}</span>
-                          </button>
-                        )
-                      })}
-                    </>
-                  )}
+                            <img src={ligaLogo} alt={l}
+                              style={{ width: '20px', height: '20px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}
+                            />
+                          </div>
+                        )}
+                        {l}
+                      </button>
+                    )
+                  })}
                 </div>
           
                 <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
@@ -605,6 +565,55 @@ export default function Home() {
               </div>
             </div>
           </div>
+          
+          {/* ── BARRA 2: Equipos — sticky debajo de barra 1 ── */}
+          {showEquipos && (
+            <div style={{
+              position: 'sticky', top: '109px', zIndex: 89,
+              background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
+              padding: '10px 24px',
+              boxSizing: 'border-box',
+              width: '100%',
+              opacity: equiposFading ? 0 : 1,
+              transition: 'opacity 0.2s ease',
+              animation: 'fadeIn 0.25s ease-out',
+            }}>
+              <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
+                {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
+                  const logoUrl = EQUIPOS_LOGOS[equipo]
+                  const isActive = activeFilter.equipo === equipo
+                  return (
+                    <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
+                      display: 'flex', alignItems: 'center', gap: '6px',
+                      background: isActive ? '#1a1a1a' : 'transparent',
+                      border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                      borderRadius: '2px', padding: '5px 13px 5px 5px',
+                      cursor: 'pointer', flexShrink: 0,
+                      transition: 'all 0.15s',
+                    }}>
+                      {logoUrl && (
+                        <div style={{
+                          width: '28px', height: '28px', flexShrink: 0,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
+                          borderRadius: '2px', overflow: 'hidden',
+                        }}>
+                          <img src={logoUrl} alt={equipo}
+                            style={{ width: '22px', height: '22px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}
+                          />
+                        </div>
+                      )}
+                      <span style={{
+                        fontSize: '13px', letterSpacing: '0.5px',
+                        color: isActive ? '#f8f4ee' : '#888',
+                        whiteSpace: 'nowrap', textTransform: 'uppercase',
+                      }}>{shortName(equipo)}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
 
           {/* ── GRID ── */}
           {/* FIX: el section ocupa todo el ancho sin maxWidth,
