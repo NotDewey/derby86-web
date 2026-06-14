@@ -526,7 +526,7 @@ export default function Home() {
                                 borderRadius: '2px', overflow: 'hidden',
                               }}>
                                 <img src={ligaLogo} alt={l}
-                                  style={{ width: '20px', height: '20px', objectFit: 'contain', , animation: 'fadeIn 0.4s ease-out'}}
+                                  style={{ width: '20px', height: '20px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out'}}
                                 />
                               </div>
                             )}
