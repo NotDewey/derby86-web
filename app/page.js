@@ -151,10 +151,15 @@ export default function Home() {
   const [equiposFading, setEquiposFading] = useState(false) // para animación
 
   const shortName = (equipo) =>
-    equipo
-      .replace('Selección de ', '')
-      .replace('Selección ', '')
-  
+      equipo
+        .replace('Selección de ', '')
+        .replace('Selección ', '')
+        .replace('Brasileña', 'Brasil')
+        .replace('Francesa', 'Francia')
+        .replace('Alemana', 'Alemania')
+        .replace('Española', 'España')
+        .replace('Italiana', 'Italia')
+      
   useEffect(() => {
     if (!catalogoVisible) return
     const handleScroll = () => {
@@ -473,7 +478,7 @@ export default function Home() {
           <div id="catalogo" style={{
             position: 'sticky', top: '60px', zIndex: 90,
             background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
-            padding: '10px 24px',
+            padding: '14px 24px',
             boxSizing: 'border-box',
             width: '100%',
           }}>
@@ -485,7 +490,7 @@ export default function Home() {
                 {/* Buscar */}
                 <input type="text" placeholder="Buscar..." value={activeFilter.search}
                   onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
-                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '5px 10px', fontSize: '12px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '120px', flexShrink: 0 }}
+                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '120px', flexShrink: 0 }}
                 />
                 <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
           
@@ -508,19 +513,19 @@ export default function Home() {
                             background: isActive ? '#1a1a1a' : 'transparent',
                             color: isActive ? '#f8f4ee' : '#888',
                             border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
-                            borderRadius: '2px', padding: ligaLogo ? '3px 10px 3px 4px' : '4px 10px',
-                            fontSize: '11px', letterSpacing: '1px', cursor: 'pointer',
+                            borderRadius: '2px', padding: ligaLogo ? '5px 13px 5px 5px' : '6px 13px',
+                            fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
                             whiteSpace: 'nowrap', textTransform: 'uppercase', flexShrink: 0,
                           }}>
                             {ligaLogo && (
                               <div style={{
-                                width: '20px', height: '20px', flexShrink: 0,
+                                width: '26px', height: '26px', flexShrink: 0,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
                                 borderRadius: '2px', overflow: 'hidden',
                               }}>
                                 <img src={ligaLogo} alt={l}
-                                  style={{ width: '16px', height: '16px', objectFit: 'contain' }}
+                                  style={{ width: '20px', height: '20px', objectFit: 'contain' }}
                                 />
                               </div>
                             )}
@@ -535,7 +540,7 @@ export default function Home() {
                       {/* Botón volver */}
                       <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
                         background: 'transparent', border: '1px solid #ddd',
-                        borderRadius: '2px', padding: '4px 10px', fontSize: '11px',
+                        borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
                         letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
                         color: '#888', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
                       }}>← {activeFilter.liga}</button>
@@ -550,24 +555,24 @@ export default function Home() {
                             display: 'flex', alignItems: 'center', gap: '6px',
                             background: isActive ? '#1a1a1a' : 'transparent',
                             border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
-                            borderRadius: '2px', padding: '3px 10px 3px 4px',
+                            borderRadius: '2px', padding: '5px 13px 5px 5px',
                             cursor: 'pointer', flexShrink: 0,
                             transition: 'all 0.15s',
                           }}>
                             {logoUrl && (
                               <div style={{
-                                width: '22px', height: '22px', flexShrink: 0,
+                                width: '28px', height: '28px', flexShrink: 0,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4',
                                 borderRadius: '2px', overflow: 'hidden',
                               }}>
                                 <img src={logoUrl} alt={equipo}
-                                  style={{ width: '18px', height: '18px', objectFit: 'contain' }}
+                                  style={{ width: '22px', height: '22px', objectFit: 'contain' }}
                                 />
                               </div>
                             )}
                             <span style={{
-                              fontSize: '11px', letterSpacing: '0.5px',
+                              fontSize: '13px', letterSpacing: '0.5px',
                               color: isActive ? '#f8f4ee' : '#888',
                               whiteSpace: 'nowrap', textTransform: 'uppercase',
                             }}>{shortName(equipo)}</span>
@@ -586,13 +591,13 @@ export default function Home() {
                     background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
                     color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
                     border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
-                    borderRadius: '2px', padding: '4px 10px', fontSize: '11px',
+                    borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
                     letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
                     textTransform: 'uppercase', flexShrink: 0,
                   }}>{e}</button>
                 ))}
           
-                <span style={{ marginLeft: 'auto', fontSize: '11px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
+                <span style={{ marginLeft: 'auto', fontSize: '13px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
                   {total} jerseys
                 </span>
               </div>
