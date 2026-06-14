@@ -593,7 +593,7 @@ export default function Home() {
               animation: 'fadeIn 0.25s ease-out',
             }}>
               <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', justifyContent: EQUIPOS_POR_LIGA[activeFilter.liga]?.length > 6 ? 'flex-start' : 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
-                {(EQUIPOS_POR_LIGA[activeFilter.liga] || [])].sort((a, b) => shortName(a).localeCompare(shortName(b), 'es')).map(equipo => {
+                {[(EQUIPOS_POR_LIGA[activeFilter.liga] || [])].sort((a, b) => shortName(a).localeCompare(shortName(b), 'es')).map(equipo => {
                   const logoUrl = EQUIPOS_LOGOS[equipo]
                   const isActive = activeFilter.equipo === equipo
                   return (
