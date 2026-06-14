@@ -498,11 +498,25 @@ export default function Home() {
                 {showEquipos && (
                   <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
                     background: 'transparent', border: '1px solid #ddd',
-                    borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
-                    letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                    color: '#888', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
-                    fontWeight: 600,
-                  }}>← {activeFilter.liga}</button>
+                    borderRadius: '2px', padding: '5px 13px 5px 5px',
+                    fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                    whiteSpace: 'nowrap', color: '#888', flexShrink: 0,
+                    display: 'flex', alignItems: 'center', gap: '5px',
+                  }}>
+                    <span>←</span>
+                    {LIGAS_LOGOS[activeFilter.liga] && (
+                      <div style={{
+                        width: '26px', height: '26px', flexShrink: 0,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        background: '#f0ece4', borderRadius: '2px', overflow: 'hidden',
+                      }}>
+                        <img src={LIGAS_LOGOS[activeFilter.liga]} alt={activeFilter.liga}
+                          style={{ width: '20px', height: '20px', objectFit: 'contain' }}
+                        />
+                      </div>
+                    )}
+                    {activeFilter.liga}
+                  </button>
                 )}
           
                 {/* Ligas — con blur cuando hay liga seleccionada */}
@@ -514,7 +528,7 @@ export default function Home() {
                   filter: showEquipos ? 'blur(1.5px)' : 'none',
                   pointerEvents: showEquipos ? 'none' : 'auto',
                 }}>
-                  {LIGAS.map(l => {
+                  {LIGAS.filter(l => !showEquipos || l !== activeFilter.liga).map(l => {
                     const ligaLogo = LIGAS_LOGOS[l]
                     const isActive = activeFilter.liga === l
                     return (
