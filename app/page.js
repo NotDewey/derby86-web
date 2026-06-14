@@ -162,13 +162,20 @@ export default function Home() {
           <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
           <span style={{ display: 'block', width: '16px', height: '2px', background: '#1a1a1a' }}/>
         </button>
-        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <button
+          onClick={() => scrollToSection('hero')}
+          style={{
+            position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+            display: 'flex', alignItems: 'center', gap: '10px',
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+          }}
+        >
           <img src={LOGO_SVG} alt="Derby 86 logo" style={{ width: '40px', height: '40px', borderRadius: '50%' }}/>
           <div>
             <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '20px', letterSpacing: '2px', color: '#1a1a1a', lineHeight: 1 }}>DERBY 86</p>
             <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>Football Jerseys</p>
           </div>
-        </div>
+        </button>
       </nav>
 
       {/* ── MENU DRAWER ── */}
