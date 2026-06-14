@@ -592,7 +592,7 @@ export default function Home() {
               transition: 'opacity 0.2s ease',
               animation: 'fadeIn 0.25s ease-out',
             }}>
-              <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', justifyContent: EQUIPOS_POR_LIGA[activeFilter.liga]?.lenght > 6 'flex - start' : 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
+              <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '6px', alignItems: 'center', justifyContent: EQUIPOS_POR_LIGA[activeFilter.liga]?.length > 6 'flex - start' : 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
                 {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
                   const logoUrl = EQUIPOS_LOGOS[equipo]
                   const isActive = activeFilter.equipo === equipo
