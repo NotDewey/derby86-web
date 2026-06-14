@@ -150,6 +150,13 @@ export default function Home() {
   const [showEquipos, setShowEquipos] = useState(false)
   const [equiposFading, setEquiposFading] = useState(false) // para animación
 
+  const shortName = (equipo) =>
+    equipo
+      .replace('Selección de ', '')
+      .replace('Selección ', '')
+
+  return (
+  
   useEffect(() => {
     if (!catalogoVisible) return
     const handleScroll = () => {
@@ -565,7 +572,7 @@ export default function Home() {
                               fontSize: '11px', letterSpacing: '0.5px',
                               color: isActive ? '#f8f4ee' : '#888',
                               whiteSpace: 'nowrap', textTransform: 'uppercase',
-                            }}>{equipo}</span>
+                            }}>{shortName(equipo)}</span>
                           </button>
                         )
                       })}
