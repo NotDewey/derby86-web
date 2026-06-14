@@ -497,10 +497,10 @@ export default function Home() {
                 {/* Botón volver — solo cuando hay liga seleccionada */}
                 {showEquipos && (
                   <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
-                    background: '1a1a1a', border: '1px solid #1a1a1a',
+                    background: 'transparent', border: '1px solid #ddd',
                     borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
                     letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                    color: '#f8f4ee', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
+                    color: '#888', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px',
                     fontWeight: 600,
                   }}>← {activeFilter.liga}</button>
                 )}
