@@ -498,7 +498,8 @@ export default function Home() {
                 {/* LIGAS o EQUIPOS con fade */}
                 <div style={{
                   display: 'flex', gap: '6px', alignItems: 'center',
-                  flex: 1, overflowX: 'auto', scrollbarWidth: 'none',
+                  flex: showEquipos ? 'none' : 1,
+                  overflowX: 'auto', scrollbarWidth: 'none',
                   opacity: equiposFading ? 0 : 1,
                   transition: 'opacity 0.2s ease',
                 }}>
