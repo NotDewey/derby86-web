@@ -223,6 +223,8 @@ export default function Home() {
     if (activeFilter.epoca)  q = q.eq('epoca', activeFilter.epoca)
     if (activeFilter.search) q = q.ilike('nombre_display', `%${activeFilter.search}%`)
     if (activeFilter.equipo) q = q.eq('equipo', activeFilter.equipo)
+    
+    console.log('Filtros activos:', activeFilter)
 
     const { data, count } = await q
     setPlayeras(data || [])
