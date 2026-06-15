@@ -67,37 +67,38 @@ const EQUIPOS_LOGOS = {
   'Tottenham Hotspur':     logo('Premier League/england_tottenham.football-logos.cc.svg'),
   'West Ham United':       logo('Premier League/england_west-ham.football-logos.cc.svg'),
   // Selecciones
-  'Selección Alemana':              logo('Selecciones/germany_germany-national-team.football-logos.cc.svg'),
-  'Selección Argentina':            logo('Selecciones/argentina_argentina-national-team.football-logos.cc.svg'),
-  'Selección Brasileña':            logo('Selecciones/brazil_brazil-national-team.football-logos.cc.svg'),
-  'Selección de Alemania Oriental': logo('Selecciones/germany_germany-national-team.football-logos.cc.svg'),
-  'Selección de Camerún':           logo('Selecciones/cameroon_cameroon-national-team.football-logos.cc.svg'),
-  'Selección de Colombia':          logo('Selecciones/colombia_colombia-national-team.football-logos.cc.svg'),
-  'Selección de Corea del Sur':     logo('Selecciones/south-korea_south-korea-national-team.football-logos.cc.svg'),
-  'Selección de Croacia':           logo('Selecciones/croatia_croatia-national-team.football-logos.cc.svg'),
-  'Selección de Escocia':           logo('Selecciones/scotland_scotland-national-team.football-logos.cc.svg'),
-  'Selección de Estados Unidos':    logo('Selecciones/usa_usa-national-team.football-logos.cc.svg'),
-  'Selección de Gales':             logo('Selecciones/wales_wales-national-team.football-logos.cc.svg'),
-  'Selección de Grecia':            logo('Selecciones/greece_greece-national-team.football-logos.cc.svg'),
-  'Selección de Holanda':           logo('Selecciones/netherlands_dutch-national-team.football-logos.cc.svg'),
-  'Selección de Inglaterra':        logo('Selecciones/england_england-national-team.football-logos.cc.svg'),
-  'Selección de Irlanda':           logo('Selecciones/republic-of-ireland_republic-of-ireland-national-team.football-logos.cc.svg'),
-  'Selección de Islandia':          logo('Selecciones/iceland_iceland-national-team.football-logos.cc.svg'),
-  'Selección de Jamaica':           logo('Selecciones/jamaica_jamaica-national-team.football-logos.cc.svg'),
-  'Selección de Japón':             logo('Selecciones/japan_japan-national-team.football-logos.cc.svg'),
-  'Selección de Marruecos':         logo('Selecciones/morocco_morocco-national-team.football-logos.cc.svg'),
-  'Selección de México':            logo('Selecciones/mexico_mexico-national-team.football-logos.cc.svg'),
-  'Selección de Nigeria':           logo('Selecciones/nigeria_nigeria-national-team.football-logos.cc.svg'),
-  'Selección de Noruega':           logo('Selecciones/norway_norway-national-team.football-logos.cc.svg'),
-  'Selección de Polonia':           logo('Selecciones/poland_poland-national-team.football-logos.cc.svg'),
-  'Selección de Portugal':          logo('Selecciones/portugal_portuguese-football-federation.football-logos.cc.svg'),
-  'Selección de Senegal':           logo('Selecciones/senegal_senegal-national-team.football-logos.cc.svg'),
-  'Selección de Sudáfrica':         logo('Selecciones/south-africa_south-africa-national-team.football-logos.cc.svg'),
-  'Selección de Turquía':           logo('Selecciones/turkey_turkey-national-team.football-logos.cc.svg'),
-  'Selección de Yugoslavia':        logo('Selecciones/yugoslavia.png'),
-  'Selección Española':             logo('Selecciones/spain_spain-national-team.football-logos.cc.svg'),
-  'Selección Francesa':             logo('Selecciones/france_france-national-team.football-logos.cc.svg'),
-  'Selección Italiana':             logo('Selecciones/italy_italy-national-team.football-logos.cc.svg'),
+  'Argentina':       logo('Selecciones/argentina_argentina-national-team.football-logos.cc.svg'),
+  'Brasil':          logo('Selecciones/brazil_brazil-national-team.football-logos.cc.svg'),
+  'Francia':         logo('Selecciones/france_france-national-team.football-logos.cc.svg'),
+  'Alemania':        logo('Selecciones/germany_germany-national-team.football-logos.cc.svg'),
+  'España':          logo('Selecciones/spain_spain-national-team.football-logos.cc.svg'),
+  'Italia':          logo('Selecciones/italy_italy-national-team.football-logos.cc.svg'),
+  'México':          logo('Selecciones/mexico_mexico-national-team.football-logos.cc.svg'),
+  'Holanda':         logo('Selecciones/netherlands_dutch-national-team.football-logos.cc.svg'),
+  'Portugal':        logo('Selecciones/portugal_portuguese-football-federation.football-logos.cc.svg'),
+  'Inglaterra':      logo('Selecciones/england_england-national-team.football-logos.cc.svg'),
+  'Colombia':        logo('Selecciones/colombia_colombia-national-team.football-logos.cc.svg'),
+  'Croacia':         logo('Selecciones/croatia_croatia-national-team.football-logos.cc.svg'),
+  'Corea del Sur':   logo('Selecciones/south-korea_south-korea-national-team.football-logos.cc.svg'),
+  'Japón':           logo('Selecciones/japan_japan-national-team.football-logos.cc.svg'),
+  'Camerún':         logo('Selecciones/cameroon_cameroon-national-team.football-logos.cc.svg'),
+  'Nigeria':         logo('Selecciones/nigeria_nigeria-national-team.football-logos.cc.svg'),
+  'Senegal':         logo('Selecciones/senegal_senegal-national-team.football-logos.cc.svg'),
+  'Marruecos':       logo('Selecciones/morocco_morocco-national-team.football-logos.cc.svg'),
+  'Turquía':         logo('Selecciones/turkey_turkey-national-team.football-logos.cc.svg'),
+  'Polonia':         logo('Selecciones/poland_poland-national-team.football-logos.cc.svg'),
+  'Grecia':          logo('Selecciones/greece_greece-national-team.football-logos.cc.svg'),
+  'Noruega':         logo('Selecciones/norway_norway-national-team.football-logos.cc.svg'),
+  'Islandia':        logo('Selecciones/iceland_iceland-national-team.football-logos.cc.svg'),
+  'Jamaica':         logo('Selecciones/jamaica_jamaica-national-team.football-logos.cc.svg'),
+  'Escocia':         logo('Selecciones/scotland_scotland-national-team.football-logos.cc.svg'),
+  'Irlanda':         logo('Selecciones/republic-of-ireland_republic-of-ireland-national-team.football-logos.cc.svg'),
+  'Gales':           logo('Selecciones/wales_wales-national-team.football-logos.cc.svg'),
+  'Estados Unidos':  logo('Selecciones/usa_usa-national-team.football-logos.cc.svg'),
+  'Sudáfrica':       logo('Selecciones/south-africa_south-africa-national-team.football-logos.cc.svg'),
+  'Yugoslavia':      logo('Selecciones/yugoslavia.png'),
+  'Alemania Oriental': logo('Selecciones/germany_germany-national-team.football-logos.cc.svg'),
+  
   // Serie A
   'AC Milan':    logo('Serie A/italy_milan.football-logos.cc.svg'),
   'Fiorentina':  logo('Serie A/italy_fiorentina.football-logos.cc.svg'),
@@ -111,7 +112,7 @@ const EQUIPOS_LOGOS = {
 
 // Mapeo liga → equipos (en el orden que quieras mostrar)
 const EQUIPOS_POR_LIGA = {
-  'Selección':      ['Selección Argentina','Selección Brasileña','Selección Italiana','Selección Francesa','Selección Alemana','Selección Española','Selección de México','Selección de Holanda','Selección de Portugal','Selección de Inglaterra','Selección de Colombia','Selección de Croacia','Selección de Corea del Sur','Selección de Japón','Selección de Camerún','Selección de Nigeria','Selección de Senegal','Selección de Marruecos','Selección de Turquía','Selección de Polonia','Selección de Grecia','Selección de Noruega','Selección de Islandia','Selección de Jamaica','Selección de Escocia','Selección de Irlanda','Selección de Gales','Selección de Estados Unidos','Selección de Sudáfrica','Selección de Yugoslavia','Selección de Alemania Oriental'],
+  'Selección':      [ 'Argentina', 'Brasil', 'Francia', 'Alemania', 'España', 'Italia', 'México', 'Holanda', 'Portugal', 'Inglaterra', 'Colombia', 'Croacia', 'Corea del Sur', 'Japón', 'Camerún', 'Nigeria', 'Senegal', 'Marruecos', 'Turquía', 'Polonia', 'Grecia', 'Noruega', 'Islandia', 'Jamaica', 'Escocia', 'Irlanda', 'Gales', 'Estados Unidos', 'Sudáfrica', 'Yugoslavia', 'Alemania Oriental'],
   'La Liga':        ['FC Barcelona','Real Madrid','Atlético de Madrid','Valencia CF','Real Betis','Celta de Vigo','Deportivo La Coruña','Espanyol'],
   'Premier League': ['Arsenal','Chelsea','Liverpool','Manchester United','Manchester City','Tottenham Hotspur','Aston Villa','Leeds United','Newcastle United','West Ham United','Everton'],
   'Serie A':        ['AC Milan','Juventus','Inter Milan','Roma','Lazio','Fiorentina','Naples','Venecia CF'],
@@ -150,15 +151,12 @@ export default function Home() {
   const [showEquipos, setShowEquipos] = useState(false)
   const [equiposFading, setEquiposFading] = useState(false) // para animación
 
-  const shortName = (equipo) =>
-      equipo
-        .replace('Selección de ', '')
-        .replace('Selección ', '')
-        .replace('Brasileña', 'Brasil')
-        .replace('Francesa', 'Francia')
-        .replace('Alemana', 'Alemania')
-        .replace('Española', 'España')
-        .replace('Italiana', 'Italia')
+  const shortName = (equipo) => equipo
+    .replace('Brasileña', 'Brasil')
+    .replace('Francesa', 'Francia')
+    .replace('Alemana', 'Alemania')
+    .replace('Española', 'España')
+    .replace('Italiana', 'Italia')
       
   useEffect(() => {
     if (!catalogoVisible) return
