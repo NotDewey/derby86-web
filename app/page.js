@@ -219,7 +219,7 @@ export default function Home() {
       .order('created_at', { ascending: false })
       .range(page * ITEMS_PER_PAGE, (page + 1) * ITEMS_PER_PAGE - 1)
 
-    if (activeFilter.liga)   q = q.eq('liga', activeFilter.liga)
+    if (activeFilter.liga && !activeFilter.equipo)   q = q.eq('liga', activeFilter.liga)
     if (activeFilter.epoca)  q = q.eq('epoca', activeFilter.epoca)
     if (activeFilter.search) q = q.ilike('nombre_display', `%${activeFilter.search}%`)
     if (activeFilter.equipo) q = q.eq('equipo', activeFilter.equipo)
