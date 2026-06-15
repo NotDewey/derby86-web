@@ -20,7 +20,7 @@ const EQUIPOS_LOGOS = {
   'Atlético de Madrid':    logo('La Liga/spain_atletico-madrid.football-logos.cc.svg'),
   'FC Barcelona':          logo('La Liga/spain_barcelona.football-logos.cc.svg'),
   'Celta de Vigo':         logo('La Liga/spain_celta.football-logos.cc.svg'),
-  'Deportivo La Coruña':   logo('La Liga/spain_deportivo-la-coruna.football-logos.cc.svg'),
+  'Deportivo de la Coruña':   logo('La Liga/spain_deportivo-la-coruna.football-logos.cc.svg'),
   'Espanyol':              logo('La Liga/spain_espanyol.football-logos.cc.svg'),
   'Real Betis':            logo('La Liga/spain_real-betis.football-logos.cc.svg'),
   'Real Madrid':           logo('La Liga/spain_real-madrid.football-logos.cc.svg'),
@@ -113,7 +113,7 @@ const EQUIPOS_LOGOS = {
 // Mapeo liga → equipos (en el orden que quieras mostrar)
 const EQUIPOS_POR_LIGA = {
   'Selección':      [ 'Argentina', 'Brasil', 'Francia', 'Alemania', 'España', 'Italia', 'México', 'Holanda', 'Portugal', 'Inglaterra', 'Colombia', 'Croacia', 'Corea del Sur', 'Japón', 'Camerún', 'Nigeria', 'Senegal', 'Marruecos', 'Turquía', 'Polonia', 'Grecia', 'Noruega', 'Islandia', 'Jamaica', 'Escocia', 'Irlanda', 'Gales', 'Estados Unidos', 'Sudáfrica', 'Yugoslavia', 'Alemania Oriental'],
-  'La Liga':        ['FC Barcelona','Real Madrid','Atlético de Madrid','Valencia CF','Real Betis','Celta de Vigo','Deportivo La Coruña','Espanyol'],
+  'La Liga':        ['FC Barcelona','Real Madrid','Atlético de Madrid','Valencia CF','Real Betis','Celta de Vigo','Deportivo de la Coruña','Espanyol'],
   'Premier League': ['Arsenal','Chelsea','Liverpool','Manchester United','Manchester City','Tottenham Hotspur','Aston Villa','Leeds United','Newcastle United','West Ham United','Everton'],
   'Serie A':        ['AC Milan','Juventus','Inter Milan','Roma','Lazio','Fiorentina','Naples','Venecia CF'],
   'Bundesliga':     ['Bayern Múnich','Borussia Dortmund'],
