@@ -309,7 +309,7 @@ export default function Home() {
           padding: '0 24px',
           display: 'flex', alignItems: 'center',
           justifyContent: catalogoVisible ? 'flex-start' : 'space-between',
-          gap: catalogoVisible ? '27px' : 0,
+          gap: catalogoVisible ? '26.5px' : 0,
           boxSizing: 'border-box',
           position: catalogoVisible ? 'static' : 'relative',
         }}>
