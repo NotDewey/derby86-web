@@ -482,7 +482,7 @@ export default function Home() {
             boxSizing: 'border-box',
             width: '100%',
           }}>
-            <div style={{ maxWidth: '1280px', margin: '0 auto', boxSizing: 'border-box' }}>
+            <div style={{ maxWidth: '1350px', margin: '0 auto', boxSizing: 'border-box' }}>
               <div style={{ display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
           
                 {/* Buscar — se agranda cuando hay liga seleccionada */}
