@@ -298,58 +298,68 @@ export default function Home() {
       <nav style={{
         position: 'sticky', top: 0, zIndex: 100,
         background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
-        padding: '0 24px', display: 'flex', alignItems: 'center',
-        justifyContent: catalogoVisible ? 'flex-start' : 'space-between',
-        gap: catalogoVisible ? '24px' : 0,
         height: '60px',
         boxSizing: 'border-box', width: '100%',
+        display: 'flex', justifyContent: 'center',
       }}>
-        <button onClick={() => setMenuOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '5px', flexShrink: 0 }}>
-          <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
-          <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
-          <span style={{ display: 'block', width: '16px', height: '2px', background: '#1a1a1a' }}/>
-        </button>
+        <div style={{
+          maxWidth: catalogoVisible ? '1380px' : 'none',
+          width: '100%',
+          margin: '0 auto',
+          padding: '0 24px',
+          display: 'flex', alignItems: 'center',
+          justifyContent: catalogoVisible ? 'flex-start' : 'space-between',
+          gap: catalogoVisible ? '24px' : 0,
+          boxSizing: 'border-box',
+          position: catalogoVisible ? 'static' : 'relative',
+        }}>
+          <button onClick={() => setMenuOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '5px', flexShrink: 0 }}>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
+            <span style={{ display: 'block', width: '16px', height: '2px', background: '#1a1a1a' }}/>
+          </button>
       
-        <button
-          onClick={() => scrollToSection('hero')}
-          style={{
-            position: catalogoVisible ? 'static' : 'absolute',
-            left: catalogoVisible ? 'auto' : '50%',
-            transform: catalogoVisible ? 'none' : 'translateX(-50%)',
-            display: 'flex', alignItems: 'center', gap: '10px',
-            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-            flexShrink: 0,
-          }}
-        >
-          <img src={LOGO_SVG} alt="Derby 86 logo" style={{ width: '52px', height: '52px', borderRadius: '50%' }}/>
-          <div>
-            <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '20px', letterSpacing: '2px', color: '#1a1a1a', lineHeight: 1 }}>DERBY 86</p>
-            <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>Football Jerseys</p>
-          </div>
-        </button>
+          <button
+            onClick={() => scrollToSection('hero')}
+            style={{
+              position: catalogoVisible ? 'static' : 'absolute',
+              left: catalogoVisible ? 'auto' : '50%',
+              transform: catalogoVisible ? 'none' : 'translateX(-50%)',
+              display: 'flex', alignItems: 'center', gap: '10px',
+              background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+              flexShrink: 0,
+            }}
+          >
+            <img src={LOGO_SVG} alt="Derby 86 logo" style={{ width: '52px', height: '52px', borderRadius: '50%' }}/>
+            <div>
+              <p style={{ fontFamily: 'Mexcellent, serif', fontSize: '20px', letterSpacing: '2px', color: '#1a1a1a', lineHeight: 1 }}>DERBY 86</p>
+              <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>Football Jerseys</p>
+            </div>
+          </button>
       
-        {catalogoVisible && (
-          <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, overflowX: 'auto', scrollbarWidth: 'none' }}>
-            <input type="text" placeholder="Buscar..." value={activeFilter.search}
-              onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
-              style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '220px', flexShrink: 0 }}
-            />
-            <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
-            {EPOCAS.map(e => (
-              <button key={e} onClick={() => setFilter('epoca', e)} style={{
-                background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
-                color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
-                border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
-                borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
-                letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                textTransform: 'uppercase', flexShrink: 0,
-              }}>{e}</button>
-            ))}
-            <span style={{ marginLeft: 'auto', fontSize: '13px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
-              {total} jerseys
-            </span>
-          </div>
-        )}
+          {catalogoVisible && (
+            <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, overflowX: 'auto', scrollbarWidth: 'none' }}>
+              <input type="text" placeholder="Buscar..." value={activeFilter.search}
+                onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
+                style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '220px', flexShrink: 0 }}
+              />
+              <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
+              {EPOCAS.map(e => (
+                <button key={e} onClick={() => setFilter('epoca', e)} style={{
+                  background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
+                  color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
+                  border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
+                  borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
+                  letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
+                  textTransform: 'uppercase', flexShrink: 0,
+                }}>{e}</button>
+              ))}
+              <span style={{ marginLeft: 'auto', fontSize: '13px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
+                {total} jerseys
+              </span>
+            </div>
+          )}
+        </div>
       </nav>
 
       {/* ── MENU DRAWER ── */}
