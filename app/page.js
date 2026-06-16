@@ -513,7 +513,7 @@ export default function Home() {
 
           <div style={{ maxWidth: '1380px', margin: '0 auto', width: '100%', display: 'flex', gap: '32px', padding: '0 24px', boxSizing: 'border-box', alignItems: 'flex-start' }}>
 
-            <aside style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '125px', maxHeight: 'calc(100vh - 145px)', overflowY: 'auto', paddingTop: '32px', paddingBottom: '32px', boxSizing: 'border-box', scrollbarWidth: 'thin' }}>
+            <aside className="sidebar-scroll" style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '125px', maxHeight: 'calc(100vh - 145px)', overflowY: 'auto', paddingTop: '32px', paddingBottom: '32px', boxSizing: 'border-box', scrollbarWidth: 'thin' }}>
               <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '12px' }}>Ligas</p>
               {showEquipos ? (
                 <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
