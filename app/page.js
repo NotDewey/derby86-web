@@ -482,7 +482,7 @@ export default function Home() {
             boxSizing: 'border-box',
             width: '100%',
           }}>
-            <div style={{ maxWidth: '1100px', margin: '0 auto', boxSizing: 'border-box' }}>
+            <div style={{ maxWidth: '1380px', margin: '0 auto', boxSizing: 'border-box' }}>
               <div style={{ display: 'flex', gap: '6px', alignItems: 'center', overflowX: 'auto', scrollbarWidth: 'none' }}>
           
                 {/* Buscar — se agranda cuando hay liga seleccionada */}
@@ -515,30 +515,49 @@ export default function Home() {
 
             <aside style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '125px', maxHeight: 'calc(100vh - 145px)', overflowY: 'auto', paddingTop: '32px', paddingBottom: '32px', boxSizing: 'border-box', scrollbarWidth: 'thin' }}>
               <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '12px' }}>Ligas</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: showEquipos ? '24px' : 0 }}>
-                {LIGAS.map(l => {
-                  const ligaLogo = LIGAS_LOGOS[l]
-                  const isActive = activeFilter.liga === l
-                  return (
-                    <button key={l} onClick={() => setFilter('liga', l)} style={{
-                      display: 'flex', alignItems: 'center', gap: '8px',
-                      background: isActive ? '#1a1a1a' : 'transparent',
-                      color: isActive ? '#f8f4ee' : '#444',
-                      border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
-                      borderRadius: '2px', padding: ligaLogo ? '6px 13px 6px 6px' : '7px 13px',
-                      fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
-                      textTransform: 'uppercase', width: '100%', textAlign: 'left',
-                    }}>
-                      {ligaLogo && (
-                        <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
-                          <img src={ligaLogo} alt={l} style={{ width: '20px', height: '20px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}/>
-                        </div>
-                      )}
-                      {l}
-                    </button>
-                  )
-                })}
-              </div>
+              {showEquipos ? (
+                <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  background: 'transparent', border: '1px solid #ddd',
+                  borderRadius: '2px', padding: '6px 13px 6px 6px',
+                  fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                  textTransform: 'uppercase', width: '100%', textAlign: 'left', color: '#888',
+                  marginBottom: '24px', animation: 'fadeIn 0.25s ease-out',
+                }}>
+                  <span>←</span>
+                  {LIGAS_LOGOS[activeFilter.liga] && (
+                    <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                      <img src={LIGAS_LOGOS[activeFilter.liga]} alt={activeFilter.liga} style={{ width: '20px', height: '20px', objectFit: 'contain' }}/>
+                    </div>
+                  )}
+                  {activeFilter.liga}
+                </button>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', opacity: equiposFading ? 0 : 1, transition: 'opacity 0.2s ease' }}>
+                  {LIGAS.map(l => {
+                    const ligaLogo = LIGAS_LOGOS[l]
+                    const isActive = activeFilter.liga === l
+                    return (
+                      <button key={l} onClick={() => setFilter('liga', l)} style={{
+                        display: 'flex', alignItems: 'center', gap: '8px',
+                        background: isActive ? '#1a1a1a' : 'transparent',
+                        color: isActive ? '#f8f4ee' : '#444',
+                        border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                        borderRadius: '2px', padding: ligaLogo ? '6px 13px 6px 6px' : '7px 13px',
+                        fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                        textTransform: 'uppercase', width: '100%', textAlign: 'left',
+                      }}>
+                        {ligaLogo && (
+                          <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                            <img src={ligaLogo} alt={l} style={{ width: '20px', height: '20px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }}/>
+                          </div>
+                        )}
+                        {l}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
           
               {showEquipos && (
                 <div style={{ opacity: equiposFading ? 0 : 1, transition: 'opacity 0.2s ease', animation: 'fadeIn 0.25s ease-out' }}>
