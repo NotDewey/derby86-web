@@ -401,7 +401,7 @@ export default function Home() {
                     PLAYERAS DE FÚTBOL RETRO
                   </h1>
                 </div>
-                <p style={{ fontSize: '14px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
+                <p style={{ fontSize: '18px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
                   Somos aficionados del fútbol.
                 </p>
               </div>
@@ -467,9 +467,11 @@ export default function Home() {
               ))}
             </div>
           </div>
-                <p style={{ fontSize: '13px', color: '#888', maxWidth: '280px', lineHeight: 1.5, fontFamily: 'Barlow Condensed', textAlign: 'left', padding: '16px 24px 0' }}>
-                Selecciones, clubes y ediciones especiales de todo el mundo.
-              </p>
+                <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', padding: '16px 24px 0', boxSizing: 'border-box' }}>
+                  <p style={{ fontSize: '18px', color: '#888', maxWidth: '280px', lineHeight: 1.5, fontFamily: 'Barlow Condensed', textAlign: 'left' }}>
+                    Selecciones, clubes y ediciones especiales de todo el mundo.
+                  </p>
+                </div>
         </div>
       )}
 
