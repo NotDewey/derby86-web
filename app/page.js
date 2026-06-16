@@ -10,7 +10,7 @@ const LIGAS  = ['Selección', 'La Liga', 'Premier League', 'Serie A', 'Bundeslig
 const EPOCAS = ['70s', '80s', '90s', '2000s', '2010s', '2020s']
 
 // Agrega este objeto antes del return, junto a LIGAS y EPOCAS:
-const BASE_URL = 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/Filtros'
+const BASE_URL = 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/filtros'
 const logo = (path) => `${BASE_URL}/${path.split('/').map(encodeURIComponent).join('/')}`
 const EQUIPOS_LOGOS = {
   // Bundesliga
@@ -424,13 +424,13 @@ export default function Home() {
               width: 'max-content',
             }}>
               {[
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/sitting-photo.JPG' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/duo-photo.JPG' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/ronaldo-photo.JPG' },
-                { foto: 'https://eebsggdfdhykoexfszvs.supabase.co/storage/v1/object/public/imagenes/solo-photo.JPG' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/left-photo-2.JPG', filtroKey: 'epoca', filtroVal: '90s' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/background-photo.JPG', filtroKey: 'liga', filtroVal: 'Selección' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/quad-photo.JPG', filtroKey: 'liga', filtroVal: 'La Liga' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/sitting-photo.JPG' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/duo-photo.JPG' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/ronaldo-photo.JPG' },
+                { foto: 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/imagenes/solo-photo.JPG' },
                 
               ].map((cat, i) => (
                 <div key={i}
