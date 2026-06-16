@@ -402,7 +402,7 @@ export default function Home() {
                   </h1>
                 </div>
                 <p style={{ fontSize: '14px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
-                  Somos aficionados del fútbol. Selecciones, clubes y ediciones especiales de todo el mundo.
+                  Somos aficionados del fútbol.
                 </p>
               </div>
             </section>
@@ -467,6 +467,9 @@ export default function Home() {
               ))}
             </div>
           </div>
+                <p style={{ fontSize: '13px', color: '#888', maxWidth: '280px', lineHeight: 1.5, fontFamily: 'Barlow Condensed', textAlign: 'left', padding: '16px 24px 0' }}>
+                Selecciones, clubes y ediciones especiales de todo el mundo.
+              </p>
         </div>
       )}
 
