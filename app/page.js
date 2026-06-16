@@ -313,7 +313,7 @@ export default function Home() {
           boxSizing: 'border-box',
           position: catalogoVisible ? 'static' : 'relative',
         }}>
-          <button onClick={() => setMenuOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '5px', flexShrink: 0 }}>
+          <button onClick={() => setMenuOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px 8px 8px 0', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '5px', flexShrink: 0 }}>
             <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
             <span style={{ display: 'block', width: '22px', height: '2px', background: '#1a1a1a' }}/>
             <span style={{ display: 'block', width: '16px', height: '2px', background: '#1a1a1a' }}/>
