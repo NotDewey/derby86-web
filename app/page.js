@@ -488,7 +488,7 @@ export default function Home() {
                 {/* Buscar — se agranda cuando hay liga seleccionada */}
                 <input type="text" placeholder="Buscar..." value={activeFilter.search}
                   onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
-                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '160px', flexShrink: 0}}
+                  style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '220px', flexShrink: 0}}
                 />
                 <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
 
