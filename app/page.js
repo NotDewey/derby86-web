@@ -30,7 +30,7 @@ const EQUIPOS_LOGOS = {
   'Monterrey':             logo('Liga Mx/mexico_monterrey.football-logos.cc.svg'),
   'Tigres':                logo('Liga Mx/mexico_tigres-uanl.football-logos.cc.svg'),
   // Ligue 1
-  'Mónaco':                logo('Ligue 1/france_as-monaco.football-logos.cc.svg'),
+  'AS Monaco':                logo('Ligue 1/france_as-monaco.football-logos.cc.svg'),
   'Olympique Lyonnais':     logo('Ligue 1/france_lyon.football-logos.cc.svg'),
   'Olympique Marseille': logo('Ligue 1/france_marseille.football-logos.cc.svg'),
   'Paris Saint-Germain':   logo('Ligue 1/france_paris-saint-germain.football-logos.cc.svg'),
@@ -117,7 +117,7 @@ const EQUIPOS_POR_LIGA = {
   'Premier League': ['Arsenal','Chelsea','Liverpool','Manchester United','Manchester City','Tottenham Hotspur','Aston Villa','Leeds United','Newcastle United','West Ham United','Everton'],
   'Serie A':        ['AC Milan','Juventus','Inter Milan','Roma','Lazio','Fiorentina','Naples','Venecia CF'],
   'Bundesliga':     ['Bayern Múnich','Borussia Dortmund'],
-  'Ligue 1':        ['Paris Saint-Germain','Olympique Lyonnais','Olympique Marseille','Mónaco'],
+  'Ligue 1':        ['Paris Saint-Germain','Olympique Lyonnais','Olympique Marseille','AS Monaco'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
   'Otro':           ['Ajax','Boca Juniors','River Plate','Flamengo','Corinthians','Palmeiras','Santos FC','São Paulo','Botafogo','Benfica','Porto','Celtic','Rangers','Los Ángeles Galaxy','D.C. United','Tokyo Verdy','Kaizer Chiefs','Cork City','Cordoba CF'],
 }
