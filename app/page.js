@@ -132,7 +132,7 @@ const LIGAS_LOGOS = {
   'Bundesliga':     logo('Bundesliga/germany_bundesliga.football-logos.cc.svg'),
   'Ligue 1':        logo('Ligue 1/france_ligue-1.football-logos.cc.svg'),
   'Liga MX':        logo('Liga Mx/mexico_liga-mx.football-logos.cc.svg'),
-  'Brasileiro Série A' logo('Campeonato Brasileno de Serie A/brazil_brazilian-serie-a.football-logos.cc.svg'),
+  'Brasileiro Série A': logo('Campeonato Brasileno de Serie A/brazil_brazilian-serie-a.football-logos.cc.svg'),
 }
 
 export default function Home() {
