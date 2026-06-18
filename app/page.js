@@ -113,15 +113,15 @@ const EQUIPOS_LOGOS = {
 
 // Mapeo liga → equipos (en el orden que quieras mostrar)
 const EQUIPOS_POR_LIGA = {
-  'Selección':      [ 'Argentina', 'Brasil', 'Francia', 'Alemania', 'España', 'Italia', 'México', 'Holanda', 'Portugal', 'Inglaterra', 'Colombia', 'Croacia', 'Corea del Sur', 'Japón', 'Camerún', 'Nigeria', 'Senegal', 'Marruecos', 'Turquía', 'Polonia', 'Grecia', 'Noruega', 'Islandia', 'Jamaica', 'Escocia', 'Irlanda', 'Gales', 'Estados Unidos', 'Sudáfrica', 'Yugoslavia', 'Alemania Oriental'],
-  'La Liga':        ['FC Barcelona','Real Madrid','Atlético de Madrid','Valencia CF','Real Betis','Celta de Vigo','Deportivo de la Coruña','RCD Espanyol'],
-  'Premier League': ['Arsenal FC','Chelsea FC','Liverpool FC','Manchester United','Manchester City','Tottenham Hotspur','Aston Villa','Leeds United','Newcastle United','West Ham United','Everton FC'],
+  'Selección':      ['Alemania', 'Alemania Oriental', 'Argentina', 'Brasil', 'Camerún', 'Colombia', 'Corea del Sur', 'Croacia', 'Escocia', 'España', 'Estados Unidos', 'Francia', 'Gales', 'Grecia', 'Holanda', 'Inglaterra', 'Irlanda', 'Islandia', 'Italia', 'Jamaica', 'Japón', 'Marruecos', 'México', 'Nigeria', 'Noruega', 'Polonia', 'Portugal', 'Senegal', 'Sudáfrica', 'Turquía', 'Yugoslavia'],
+  'La Liga':        ['Atlético de Madrid', 'Celta de Vigo', 'Deportivo de la Coruña', 'FC Barcelona', 'RCD Espanyol', 'Real Betis', 'Real Madrid', 'Valencia CF'],
+  'Premier League': ['Arsenal FC', 'Aston Villa', 'Chelsea FC', 'Everton FC', 'Leeds United', 'Liverpool FC', 'Manchester City', 'Manchester United', 'Newcastle United', 'Tottenham Hotspur', 'West Ham United'],
   'Serie A':        ['AC Milan','ACF Fiorentina','AS Roma','Inter Milan','Juventus FC','SS Lazio','SSC Napoli','Venezia FC'],
-  'Bundesliga':     ['Bayern München','Borussia Dortmund'],
-  'Ligue 1':        ['Paris Saint-Germain','Olympique Lyonnais','Olympique Marseille','AS Monaco'],
+  'Bundesliga':     ['Bayern München', 'Borussia Dortmund'],
+  'Ligue 1':        ['AS Monaco', 'Olympique Lyonnais', 'Olympique Marseille', 'Paris Saint-Germain'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
-  'Brasileiro Série A': ['Botafogo','Flamengo','Palmeiras','Santos FC','SC Corinthians Paulista','São Paulo FC'],
-  'Otro':           ['Ajax Amsterdam','Boca Juniors','River Plate','SL Benfica','FC Porto','Celtic FC','Rangers FC','LA Galaxy','DC United','Tokyo Verdy','Kaizer Chiefs','Cork City','Córdoba CF'],
+  'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
+  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'DC United', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'SL Benfica', 'Tokyo Verdy'],
 }
 
 const LIGAS_LOGOS = {
