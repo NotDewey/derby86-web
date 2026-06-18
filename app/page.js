@@ -30,9 +30,9 @@ const EQUIPOS_LOGOS = {
   'Monterrey':             logo('Liga Mx/mexico_monterrey.football-logos.cc.svg'),
   'Tigres':                logo('Liga Mx/mexico_tigres-uanl.football-logos.cc.svg'),
   // Ligue 1
-  'AS Monaco':                logo('Ligue 1/france_as-monaco.football-logos.cc.svg'),
-  'Olympique Lyonnais':     logo('Ligue 1/france_lyon.football-logos.cc.svg'),
-  'Olympique Marseille': logo('Ligue 1/france_marseille.football-logos.cc.svg'),
+  'AS Monaco':             logo('Ligue 1/france_as-monaco.football-logos.cc.svg'),
+  'Olympique Lyonnais':    logo('Ligue 1/france_lyon.football-logos.cc.svg'),
+  'Olympique Marseille':   logo('Ligue 1/france_marseille.football-logos.cc.svg'),
   'Paris Saint-Germain':   logo('Ligue 1/france_paris-saint-germain.football-logos.cc.svg'),
   // Otro
   'Ajax':                  logo('Otro/netherlands_ajax.football-logos.cc.svg'),
@@ -104,7 +104,7 @@ const EQUIPOS_LOGOS = {
   'Fiorentina':  logo('Serie A/italy_fiorentina.football-logos.cc.svg'),
   'Inter Milan': logo('Serie A/italy_inter.football-logos.cc.svg'),
   'Juventus':    logo('Serie A/italy_juventus.football-logos.cc.svg'),
-  'SS Lazio':       logo('Serie A/italy_lazio.football-logos.cc.svg'),
+  'SS Lazio':    logo('Serie A/italy_lazio.football-logos.cc.svg'),
   'Napoli':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
   'Roma':        logo('Serie A/italy_roma.football-logos.cc.svg'),
   'Venezia FC':  logo('Serie A/italy_venezia.football-logos.cc.svg'),
