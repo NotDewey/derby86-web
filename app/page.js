@@ -105,7 +105,7 @@ const EQUIPOS_LOGOS = {
   'Inter Milan': logo('Serie A/italy_inter.football-logos.cc.svg'),
   'Juventus':    logo('Serie A/italy_juventus.football-logos.cc.svg'),
   'Lazio':       logo('Serie A/italy_lazio.football-logos.cc.svg'),
-  'Naples':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
+  'Napoli':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
   'Roma':        logo('Serie A/italy_roma.football-logos.cc.svg'),
   'Venezia FC':  logo('Serie A/italy_venezia.football-logos.cc.svg'),
 }
@@ -115,7 +115,7 @@ const EQUIPOS_POR_LIGA = {
   'Selección':      [ 'Argentina', 'Brasil', 'Francia', 'Alemania', 'España', 'Italia', 'México', 'Holanda', 'Portugal', 'Inglaterra', 'Colombia', 'Croacia', 'Corea del Sur', 'Japón', 'Camerún', 'Nigeria', 'Senegal', 'Marruecos', 'Turquía', 'Polonia', 'Grecia', 'Noruega', 'Islandia', 'Jamaica', 'Escocia', 'Irlanda', 'Gales', 'Estados Unidos', 'Sudáfrica', 'Yugoslavia', 'Alemania Oriental'],
   'La Liga':        ['FC Barcelona','Real Madrid','Atlético de Madrid','Valencia CF','Real Betis','Celta de Vigo','Deportivo de la Coruña','Espanyol'],
   'Premier League': ['Arsenal','Chelsea','Liverpool','Manchester United','Manchester City','Tottenham Hotspur','Aston Villa','Leeds United','Newcastle United','West Ham United','Everton'],
-  'Serie A':        ['AC Milan','Juventus','Inter Milan','Roma','Lazio','Fiorentina','Naples','Venezia FC'],
+  'Serie A':        ['AC Milan','Juventus','Inter Milan','Roma','Lazio','Fiorentina','Napoli','Venezia FC'],
   'Bundesliga':     ['Bayern Múnich','Borussia Dortmund'],
   'Ligue 1':        ['Paris Saint-Germain','Olympique Lyonnais','Olympique Marseille','AS Monaco'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
