@@ -21,8 +21,8 @@ const EQUIPOS_LOGOS = {
   'Flamengo':              logo('Campeonato Brasileno de Serie A/brazil_flamengo.football-logos.cc.svg'),
   'Palmeiras':             logo('Campeonato Brasileno de Serie A/brazil_palmeiras.football-logos.cc.svg'),
   'Santos FC':             logo('Campeonato Brasileno de Serie A/brazil_santos.football-logos.cc.svg'),
-  'SC Corinthians Paulista": "Brasileiro Série A': logo('Campeonato Brasileno de Serie A/brazil_corinthians.football-logos.cc.svg'),
-  'São Paulo FC": "Brasileiro Série A':            logo('Campeonato Brasileno de Serie A/brazil_sao-paulo.football-logos.cc.svg'),
+  'SC Corinthians Paulista': logo('Campeonato Brasileno de Serie A/brazil_corinthians.football-logos.cc.svg'),
+  'São Paulo FC':          logo('Campeonato Brasileno de Serie A/brazil_sao-paulo.football-logos.cc.svg'),
   // La Liga
   'Atlético de Madrid':    logo('La Liga/spain_atletico-madrid.football-logos.cc.svg'),
   'FC Barcelona':          logo('La Liga/spain_barcelona.football-logos.cc.svg'),
