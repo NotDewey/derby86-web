@@ -45,6 +45,7 @@ const EQUIPOS_LOGOS = {
   // Otro
   'Ajax Amsterdam':        logo('Otro/netherlands_ajax.football-logos.cc.svg'),
   'SL Benfica':            logo('Liga Portugal/portugal_benfica.football-logos.cc.svg'),
+  'Sporting CP':           logo('Liga Portugal/portugal_sporting-cp.football-logos.cc.svg'),
   'Boca Juniors':          logo('Otro/argentina_boca-juniors.football-logos.cc.svg'),
   'Ceará':                 logo('Otro/brazil_ceara.football-logos.cc.svg'),
   'Celtic FC':             logo('Otro/scotland_celtic.football-logos.cc.svg'),
@@ -123,7 +124,7 @@ const EQUIPOS_POR_LIGA = {
   'Ligue 1':        ['AS Monaco', 'Olympique Lyonnais', 'Olympique Marseille', 'Paris Saint-Germain'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
   'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Fluminense', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
-  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'DC United', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'SL Benfica', 'Tokyo Verdy'],
+  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'DC United', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'Sporting CP', 'SL Benfica', 'Tokyo Verdy'],
 }
 
 const LIGAS_LOGOS = {
