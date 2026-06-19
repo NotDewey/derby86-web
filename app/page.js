@@ -45,6 +45,7 @@ const EQUIPOS_LOGOS = {
   'Ajax Amsterdam':        logo('Otro/netherlands_ajax.football-logos.cc.svg'),
   'SL Benfica':            logo('Liga Portugal/portugal_benfica.football-logos.cc.svg'),
   'Boca Juniors':          logo('Otro/argentina_boca-juniors.football-logos.cc.svg'),
+  'Ceará':                 logo('Otro/brazil_ceara.football-logos.cc.svg'),
   'Celtic FC':             logo('Otro/scotland_celtic.football-logos.cc.svg'),
   'Córdoba CF':            logo('Otro/spain_cordoba.football-logos.cc.svg'),
   'Cork City':             logo('Otro/republic-of-ireland_cork-city.football-logos.cc.svg'),
