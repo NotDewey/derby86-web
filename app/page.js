@@ -19,6 +19,7 @@ const EQUIPOS_LOGOS = {
   //Brasileiro Série A
   'Botafogo':              logo('Campeonato Brasileno de Serie A/brazil_botafogo.football-logos.cc.svg'),
   'Flamengo':              logo('Campeonato Brasileno de Serie A/brazil_flamengo.football-logos.cc.svg'),
+  'Fluminense':            logo('Campeonato Brasileno de Serie A/brazil_fluminense.football-logos.cc.svg'),
   'Palmeiras':             logo('Campeonato Brasileno de Serie A/brazil_palmeiras.football-logos.cc.svg'),
   'Santos FC':             logo('Campeonato Brasileno de Serie A/brazil_santos.football-logos.cc.svg'),
   'SC Corinthians Paulista': logo('Campeonato Brasileno de Serie A/brazil_corinthians.football-logos.cc.svg'),
@@ -121,7 +122,7 @@ const EQUIPOS_POR_LIGA = {
   'Bundesliga':     ['Bayern München', 'Borussia Dortmund'],
   'Ligue 1':        ['AS Monaco', 'Olympique Lyonnais', 'Olympique Marseille', 'Paris Saint-Germain'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
-  'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
+  'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Fluminense', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
   'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'DC United', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'SL Benfica', 'Tokyo Verdy'],
 }
 
