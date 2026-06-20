@@ -57,11 +57,13 @@ input::placeholder { color: #bbb; }
    Las reglas dentro del media query son las que activan el layout mobile. */
 .d86-mobile-only { display: none; }
 .d86-desktop-only { display: revert; }
+.d86-tag-bubble { display: none; }
 
 @media (max-width: 767px) {
   .d86-mobile-only { display: revert; }
   .d86-desktop-only { display: none !important; }
   button.d86-mobile-only { display: inline-flex; }
+  .d86-tag-bubble { display: flex !important; }
 
   /* Nav: la fila de búsqueda + épocas pasa a layout compacto de 2 filas */
   .d86-nav-inner {
@@ -134,7 +136,8 @@ input::placeholder { color: #bbb; }
     scroll-snap-align: start !important;
   }
 
-  /* Modal de producto: apila imagen sobre info en vez de lado a lado */
+  /* Modal de producto: apila imagen sobre info en vez de lado a lado,
+     y todo el modal es un único scroll vertical (sin scrolls anidados) */
   .d86-modal-shell {
     padding: 0 !important;
   }
@@ -143,18 +146,29 @@ input::placeholder { color: #bbb; }
     height: 100vh !important;
     border-radius: 0 !important;
   }
+  .d86-modal-header {
+    display: none !important;
+  }
   .d86-modal-body {
     flex-direction: column !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   .d86-modal-image {
     flex: 0 0 auto !important;
-    min-height: 320px !important;
-    height: 45vh !important;
+    min-height: 0 !important;
+    height: 70vw !important;
+    max-height: 380px !important;
   }
   .d86-modal-info {
     border-left: none !important;
-    border-top: 1px solid rgba(255,255,255,0.4) !important;
+    border-top: none !important;
+    overflow-y: visible !important;
+    padding-bottom: 32px !important;
+  }
+  .d86-modal-cta {
+    margin-top: 8px !important;
   }
 }
 
