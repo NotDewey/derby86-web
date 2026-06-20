@@ -158,6 +158,7 @@ export default function Home() {
   const [equiposFading, setEquiposFading] = useState(false) // para animación
   const [filtersOpen, setFiltersOpen] = useState(false) // bottom-sheet de filtros (mobile)
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false) // input de búsqueda (mobile)
+  const [touchStartX, setTouchStartX] = useState(null) // swipe de fotos en el modal (mobile)
 
   const shortName = (equipo) => equipo
     .replace('Brasileña', 'Brasil')
@@ -274,6 +275,21 @@ export default function Home() {
     setSelectedPlayera(null)
     setFotos([])
     setFotoIndex(0)
+  }
+
+  // Swipe táctil para navegar entre fotos en el modal (mobile)
+  const handlePhotoTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX)
+  }
+  const handlePhotoTouchEnd = (e) => {
+    if (touchStartX === null) return
+    const deltaX = e.changedTouches[0].clientX - touchStartX
+    const SWIPE_THRESHOLD = 40
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD && fotos.length > 1) {
+      if (deltaX < 0) setFotoIndex(i => (i + 1) % fotos.length)
+      else setFotoIndex(i => (i - 1 + fotos.length) % fotos.length)
+    }
+    setTouchStartX(null)
   }
 
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE)
@@ -781,7 +797,7 @@ export default function Home() {
                           boxSizing: 'border-box',
                           // sin boxShadow — el gap con background hace los bordes
                         }}>
-                        <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df' }}>
+                        <div style={{ aspectRatio: '1', overflow: 'hidden', background: '#ede8df', position: 'relative' }}>
                           {imagen ? (
                             <img src={imagen} alt={nombre}
                               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hov ? 'scale(1.06)' : 'scale(1)', animation: 'fadeIn 0.6s ease-out' }}
@@ -789,6 +805,19 @@ export default function Home() {
                             />
                           ) : (
                             <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🎽</div>
+                          )}
+                          {p.edicion_especial && ediciones[p.edicion_especial] && (
+                            <div className="d86-tag-bubble" title={p.edicion_especial} style={{
+                              position: 'absolute', top: '6px', right: '6px',
+                              width: '26px', height: '26px', borderRadius: '50%',
+                              background: 'rgba(248,244,238,0.92)',
+                              border: '1px solid rgba(0,0,0,0.08)',
+                              boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+                              alignItems: 'center', justifyContent: 'center',
+                              flexShrink: 0,
+                            }}>
+                              <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+                            </div>
                           )}
                         </div>
                         <div className="d86-product-card-body" style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
@@ -930,7 +959,7 @@ export default function Home() {
               display: 'flex', flexDirection: 'column',
               animation: 'popUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px 16px', borderBottom: '1px solid rgba(255,255,255,0.35)' }}>
+              <div className="d86-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px 16px', borderBottom: '1px solid rgba(255,255,255,0.35)' }}>
                 <div>
                   <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(30,20,10,0.55)', textTransform: 'uppercase', marginBottom: '4px' }}>
                     {selectedPlayera.liga || 'Jersey'}{selectedPlayera.anio ? ` · ${selectedPlayera.anio}` : ''}
@@ -939,20 +968,24 @@ export default function Home() {
                     {selectedPlayera.nombre_display || 'Playera retro'}
                   </p>
                 </div>
-                <button onClick={closePlayera} style={{ background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.75)', borderRadius: '50%', width: '36px', height: '36px', color: 'rgba(20,15,10,0.8)', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</button>
+                <button onClick={closePlayera} className="d86-desktop-only" style={{ background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.75)', borderRadius: '50%', width: '36px', height: '36px', color: 'rgba(20,15,10,0.8)', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</button>
               </div>
 
               <div className="d86-modal-body" style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
-                <div className="d86-modal-image" style={{ flex: '0 0 62%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '480px' }}>
+                <div className="d86-modal-image"
+                  onTouchStart={handlePhotoTouchStart}
+                  onTouchEnd={handlePhotoTouchEnd}
+                  style={{ flex: '0 0 62%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '480px', touchAction: 'pan-y' }}>
+                  <button onClick={closePlayera} className="d86-mobile-only" style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2, background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.85)', borderRadius: '50%', width: '34px', height: '34px', color: 'rgba(20,15,10,0.8)', fontSize: '16px', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>✕</button>
                   {loadingFotos ? (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(20,15,10,0.4)', fontSize: '11px', letterSpacing: '3px' }}>CARGANDO...</div>
                   ) : fotos.length > 0 ? (
                     <>
-                      <img key={fotoIndex} src={fotos[fotoIndex]?.url} alt={`Foto ${fotoIndex + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'fadeIn 0.2s ease-out' }} />
+                      <img key={fotoIndex} src={fotos[fotoIndex]?.url} alt={`Foto ${fotoIndex + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'fadeIn 0.2s ease-out' }} draggable={false} />
                       {fotos.length > 1 && (
                         <>
-                          <button onClick={() => setFotoIndex(i => (i - 1 + fotos.length) % fotos.length)} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)', borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
-                          <button onClick={() => setFotoIndex(i => (i + 1) % fotos.length)} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)', borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
+                          <button onClick={() => setFotoIndex(i => (i - 1 + fotos.length) % fotos.length)} className="d86-desktop-only" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)', borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
+                          <button onClick={() => setFotoIndex(i => (i + 1) % fotos.length)} className="d86-desktop-only" style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.8)', borderRadius: '50%', width: '38px', height: '38px', color: 'rgba(20,15,10,0.8)', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
                           <div style={{ position: 'absolute', bottom: '14px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px' }}>
                             {fotos.map((_, i) => (
                               <div key={i} onClick={() => setFotoIndex(i)} style={{ width: i === fotoIndex ? '20px' : '6px', height: '6px', borderRadius: '3px', cursor: 'pointer', transition: 'all 0.25s', background: i === fotoIndex ? 'rgba(20,15,10,0.7)' : 'rgba(255,255,255,0.6)' }}/>
@@ -960,7 +993,10 @@ export default function Home() {
                           </div>
                         </>
                       )}
-                      <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(255,255,255,0.55)', borderRadius: '12px', padding: '3px 10px', fontSize: '10px', color: 'rgba(20,15,10,0.7)', letterSpacing: '1px', backdropFilter: 'blur(8px)' }}>
+                      <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(255,255,255,0.55)', borderRadius: '12px', padding: '3px 10px', fontSize: '10px', color: 'rgba(20,15,10,0.7)', letterSpacing: '1px', backdropFilter: 'blur(8px)' }} className="d86-desktop-only">
+                        {fotoIndex + 1} / {fotos.length}
+                      </div>
+                      <div className="d86-mobile-only" style={{ position: 'absolute', bottom: '10px', right: '12px', background: 'rgba(255,255,255,0.55)', borderRadius: '12px', padding: '3px 10px', fontSize: '10px', color: 'rgba(20,15,10,0.7)', letterSpacing: '1px', backdropFilter: 'blur(8px)' }}>
                         {fotoIndex + 1} / {fotos.length}
                       </div>
                     </>
@@ -1014,7 +1050,7 @@ export default function Home() {
                     </div>
                   )}
 
-                  <div style={{ marginTop: 'auto' }}>
+                  <div className="d86-modal-cta" style={{ marginTop: 'auto' }}>
                     <a href={`https://wa.me/521XXXXXXXXXX?text=Hola! Me interesa esta playera: ${encodeURIComponent(selectedPlayera.nombre_display || 'Playera retro')}`}
                       target="_blank" rel="noopener noreferrer"
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#25D366', color: 'white', padding: '14px 20px', borderRadius: '12px', fontSize: '13px', letterSpacing: '1px', textDecoration: 'none', fontWeight: 600, textTransform: 'uppercase' }}>
