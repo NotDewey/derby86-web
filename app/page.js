@@ -1010,12 +1010,12 @@ export default function Home() {
                 <div className="d86-modal-info" style={{ flex: 1, padding: '24px', overflowY: 'auto', borderLeft: '1px solid rgba(255,255,255,0.4)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {[selectedPlayera.equipo, selectedPlayera.liga, selectedPlayera.epoca, selectedPlayera.tipo].filter(Boolean).map((tag, i) => (
-                      <span key={i} style={{ background: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.7)', borderRadius: '4px', padding: '3px 10px', fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.75)', textTransform: 'uppercase' }}>{tag}</span>
+                      <span key={i} className="d86-tag-pill" style={{ background: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.7)', borderRadius: '4px', padding: '3px 10px', fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.75)', textTransform: 'uppercase' }}>{tag}</span>
                     ))}
                   </div>
 
                   {selectedPlayera.edicion_especial && ediciones[selectedPlayera.edicion_especial] && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.5)', borderRadius: '10px', width: 'fit-content' }}>
+                    <div className="d86-tag-pill-box" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.5)', borderRadius: '10px', width: 'fit-content' }}>
                       <img src={ediciones[selectedPlayera.edicion_especial]} alt={selectedPlayera.edicion_especial} style={{ height: '28px', width: 'auto', objectFit: 'contain' }} />
                       <span style={{ fontSize: '11px', letterSpacing: '2px', color: 'rgba(20,15,10,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>{selectedPlayera.edicion_especial}</span>
                     </div>
