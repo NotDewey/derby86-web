@@ -197,6 +197,33 @@ input::placeholder { color: #bbb; }
   }
 }
 
+/* ───────────────────────── TABLET LAYOUT (768px–1024px) ─────────────────────────
+   Entre mobile y desktop: el sidebar de Ligas y la barra de búsqueda de
+   desktop son demasiado anchos para el espacio disponible, así que se
+   ajustan sin caer al layout compacto de mobile (que oculta el sidebar). */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .d86-nav-inner {
+    gap: 14px !important;
+  }
+  .d86-nav-controls {
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+  }
+  .d86-nav-search {
+    width: 160px !important;
+  }
+  .d86-catalogo-shell {
+    gap: 20px !important;
+    padding: 0 16px !important;
+  }
+  .d86-sidebar {
+    width: 170px !important;
+  }
+  .d86-product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+  }
+}
+
 /* ───────────────────── BOTTOM SHEET de filtros (mobile) ───────────────────── */
 
 .d86-sheet-backdrop {
