@@ -165,18 +165,6 @@ export default function Home() {
     .replace('Alemana', 'Alemania')
     .replace('Española', 'España')
     .replace('Italiana', 'Italia')
-      
-  useEffect(() => {
-    if (!catalogoVisible) return
-    const handleScroll = () => {
-      const catalogo = document.getElementById('catalogo')
-      if (catalogo && window.scrollY < catalogo.offsetTop - 80) {
-        window.scrollTo({ top: catalogo.offsetTop - 70 })
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [catalogoVisible])
 
   const scrollToSection = (section) => {
     setMenuOpen(false)
@@ -309,6 +297,7 @@ export default function Home() {
         minHeight: '60px',
         boxSizing: 'border-box', width: '100%',
         display: 'flex', justifyContent: 'center',
+        transition: 'min-height 0.15s ease',
       }}>
         <div className="d86-nav-inner" style={{
           maxWidth: catalogoVisible ? '1380px' : 'none',
