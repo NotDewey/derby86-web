@@ -229,6 +229,35 @@ export default function Home() {
 
   useEffect(() => { fetchPlayeras() }, [fetchPlayeras])
 
+  // Bloquea el scroll del fondo mientras hay un overlay abierto (modal de
+  // producto, bottom-sheet de filtros, o menú drawer), tanto en desktop
+  // como en mobile (donde overflow:hidden no alcanza por el "rubber-band"
+  // del navegador, así que también fijamos el body en su posición).
+  useEffect(() => {
+    const overlayOpen = !!selectedPlayera || filtersOpen || menuOpen
+    if (!overlayOpen) return
+
+    const scrollY = window.scrollY
+    const { body } = document
+    const prevBodyPosition = body.style.position
+    const prevBodyTop = body.style.top
+    const prevBodyWidth = body.style.width
+    const prevBodyOverflow = body.style.overflow
+
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.width = '100%'
+    body.style.overflow = 'hidden'
+
+    return () => {
+      body.style.position = prevBodyPosition
+      body.style.top = prevBodyTop
+      body.style.width = prevBodyWidth
+      body.style.overflow = prevBodyOverflow
+      window.scrollTo(0, scrollY)
+    }
+  }, [selectedPlayera, filtersOpen, menuOpen])
+
   useEffect(() => {
     const fetchEdiciones = async () => {
       const { data } = await supabase.from('ediciones_especiales').select('nombre, logo_url')
@@ -353,7 +382,7 @@ export default function Home() {
       
           {catalogoVisible && (
             <div className="d86-nav-controls" style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, overflowX: 'auto', scrollbarWidth: 'none' }}>
-              <input type="text" placeholder="Buscar..." value={activeFilter.search}
+              <input type="text" placeholder="Buscar..." value={activeFilter.search} className="d86-nav-search"
                 onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
                 style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '220px', flexShrink: 0 }}
               />
