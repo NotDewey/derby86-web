@@ -50,3 +50,138 @@ input::placeholder { color: #bbb; }
 .sidebar-scroll {
   scrollbar-width: none;
 }
+
+/* ───────────────────────── MOBILE LAYOUT (<768px) ───────────────────────── */
+
+/* Por defecto (desktop) estos helpers no hacen nada visible.
+   Las reglas dentro del media query son las que activan el layout mobile. */
+.d86-mobile-only { display: none; }
+.d86-desktop-only { display: revert; }
+
+@media (max-width: 767px) {
+  .d86-mobile-only { display: revert; }
+  .d86-desktop-only { display: none !important; }
+  button.d86-mobile-only { display: inline-flex; }
+
+  /* Nav: la fila de búsqueda + épocas pasa a layout compacto de 2 filas */
+  .d86-nav-inner {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 10px 16px !important;
+    height: auto !important;
+  }
+  .d86-nav-controls {
+    width: 100%;
+    flex: 1 1 100% !important;
+    order: 3;
+    overflow-x: auto !important;
+  }
+  .d86-nav-controls::-webkit-scrollbar { display: none; }
+
+  /* Catálogo: el aside de Ligas se oculta, el grid ocupa todo el ancho */
+  .d86-catalogo-shell {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0 16px !important;
+  }
+  .d86-sidebar {
+    display: none !important;
+  }
+  .d86-grid-section {
+    padding-top: 16px !important;
+  }
+
+  /* Grid de productos: 3 columnas fijas en mobile */
+  .d86-product-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .d86-product-card-body {
+    padding: 8px 8px 10px !important;
+  }
+  .d86-product-card-title {
+    font-size: 12.5px !important;
+  }
+  .d86-product-card-meta {
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+  }
+
+  /* Hero / carrusel: una foto completa por pantalla con scroll-snap */
+  .d86-hero-section {
+    padding: 24px 16px 20px !important;
+  }
+  .d86-hero-title-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .d86-hero-title {
+    white-space: normal !important;
+    font-size: clamp(30px, 9vw, 44px) !important;
+    line-height: 1.05 !important;
+  }
+  .d86-hero-subtitle {
+    text-align: left !important;
+    max-width: none !important;
+  }
+  .d86-carousel {
+    scroll-snap-type: x mandatory !important;
+    height: 50vh !important;
+  }
+  .d86-carousel-item {
+    width: 100vw !important;
+    min-width: 100vw !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* Modal de producto: apila imagen sobre info en vez de lado a lado */
+  .d86-modal-shell {
+    padding: 0 !important;
+  }
+  .d86-modal-card {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+  }
+  .d86-modal-body {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+  }
+  .d86-modal-image {
+    flex: 0 0 auto !important;
+    min-height: 320px !important;
+    height: 45vh !important;
+  }
+  .d86-modal-info {
+    border-left: none !important;
+    border-top: 1px solid rgba(255,255,255,0.4) !important;
+  }
+}
+
+/* ───────────────────── BOTTOM SHEET de filtros (mobile) ───────────────────── */
+
+.d86-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 600;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.d86-sheet {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 601;
+  background: #f8f4ee;
+  border-radius: 18px 18px 0 0;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: d86SheetUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.15);
+}
+
+@keyframes d86SheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
