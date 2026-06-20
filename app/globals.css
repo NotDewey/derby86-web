@@ -136,15 +136,17 @@ input::placeholder { color: #bbb; }
     scroll-snap-align: start !important;
   }
 
-  /* Modal de producto: apila imagen sobre info en vez de lado a lado,
-     y todo el modal es un único scroll vertical (sin scrolls anidados) */
+  /* Modal de producto: burbuja flotante (igual que desktop, con margen
+     alrededor y esquinas redondeadas) en vez de pantalla completa.
+     Imagen arriba, info abajo, todo en un único scroll vertical. */
   .d86-modal-shell {
-    padding: 0 !important;
+    padding: 16px !important;
+    align-items: center !important;
   }
   .d86-modal-card {
-    max-height: 100vh !important;
-    height: 100vh !important;
-    border-radius: 0 !important;
+    max-height: 88vh !important;
+    height: auto !important;
+    border-radius: 22px !important;
   }
   .d86-modal-header {
     display: none !important;
@@ -158,17 +160,40 @@ input::placeholder { color: #bbb; }
   .d86-modal-image {
     flex: 0 0 auto !important;
     min-height: 0 !important;
-    height: 70vw !important;
-    max-height: 380px !important;
+    height: 62vw !important;
+    max-height: 320px !important;
+    border-radius: 22px 22px 0 0 !important;
+    overflow: hidden !important;
   }
   .d86-modal-info {
     border-left: none !important;
     border-top: none !important;
     overflow-y: visible !important;
-    padding-bottom: 32px !important;
+    padding-bottom: 28px !important;
   }
   .d86-modal-cta {
     margin-top: 8px !important;
+  }
+
+  /* Tags: liquid glass más opaco y tipo píldora para que destaquen sobre el fondo translúcido del modal */
+  .d86-tag-pill {
+    background: rgba(255,255,255,0.55) !important;
+    border: 1px solid rgba(255,255,255,0.85) !important;
+    backdrop-filter: blur(12px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.4) !important;
+    color: rgba(15,10,5,0.85) !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+  }
+  .d86-tag-pill-box {
+    background: rgba(255,255,255,0.5) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    backdrop-filter: blur(12px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.4) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6) !important;
   }
 }
 
