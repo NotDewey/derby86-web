@@ -156,6 +156,8 @@ export default function Home() {
   const [hoverTimer, setHoverTimer] = useState(null)
   const [showEquipos, setShowEquipos] = useState(false)
   const [equiposFading, setEquiposFading] = useState(false) // para animación
+  const [filtersOpen, setFiltersOpen] = useState(false) // bottom-sheet de filtros (mobile)
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false) // input de búsqueda (mobile)
 
   const shortName = (equipo) => equipo
     .replace('Brasileña', 'Brasil')
@@ -304,15 +306,16 @@ export default function Home() {
       <nav style={{
         position: 'sticky', top: 0, zIndex: 100,
         background: '#f8f4ee', borderBottom: '1px solid #e0d8cc',
-        height: '60px',
+        minHeight: '60px',
         boxSizing: 'border-box', width: '100%',
         display: 'flex', justifyContent: 'center',
       }}>
-        <div style={{
+        <div className="d86-nav-inner" style={{
           maxWidth: catalogoVisible ? '1380px' : 'none',
           width: '100%',
           margin: '0 auto',
           padding: '0 24px',
+          height: '60px',
           display: 'flex', alignItems: 'center',
           justifyContent: catalogoVisible ? 'flex-start' : 'space-between',
           gap: catalogoVisible ? '26.5px' : 0,
@@ -344,24 +347,48 @@ export default function Home() {
           </button>
       
           {catalogoVisible && (
-            <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, overflowX: 'auto', scrollbarWidth: 'none' }}>
+            <div className="d86-nav-controls" style={{ display: 'flex', gap: '6px', alignItems: 'center', flex: 1, overflowX: 'auto', scrollbarWidth: 'none' }}>
               <input type="text" placeholder="Buscar..." value={activeFilter.search}
                 onChange={e => { setActive(p => ({ ...p, search: e.target.value })); setPage(0) }}
                 style={{ border: '1px solid #ccc', borderRadius: '2px', padding: '7px 13px', fontSize: '14px', background: 'transparent', color: '#1a1a1a', outline: 'none', width: '220px', flexShrink: 0 }}
               />
-              <div style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
-              {EPOCAS.map(e => (
-                <button key={e} onClick={() => setFilter('epoca', e)} style={{
-                  background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
-                  color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
-                  border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
-                  borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
-                  letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
-                  textTransform: 'uppercase', flexShrink: 0,
-                }}>{e}</button>
-              ))}
-              <span style={{ marginLeft: 'auto', fontSize: '13px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
+              <div className="d86-desktop-only" style={{ width: '1px', height: '18px', background: '#ddd', flexShrink: 0 }}/>
+              <div className="d86-desktop-only" style={{ display: 'contents' }}>
+                {EPOCAS.map(e => (
+                  <button key={e} onClick={() => setFilter('epoca', e)} style={{
+                    background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
+                    color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
+                    border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
+                    borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
+                    letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
+                    textTransform: 'uppercase', flexShrink: 0,
+                  }}>{e}</button>
+                ))}
+              </div>
+
+              {/* Botón de filtros: solo visible en mobile, abre el bottom-sheet */}
+              <button onClick={() => setFiltersOpen(true)} className="d86-mobile-only" style={{
+                alignItems: 'center', gap: '6px',
+                background: (activeFilter.liga || activeFilter.epoca) ? '#1a1a1a' : 'transparent',
+                color: (activeFilter.liga || activeFilter.epoca) ? '#f8f4ee' : '#444',
+                border: `1px solid ${(activeFilter.liga || activeFilter.epoca) ? '#1a1a1a' : '#ccc'}`,
+                borderRadius: '2px', padding: '7px 12px', fontSize: '12px',
+                letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
+                textTransform: 'uppercase', flexShrink: 0,
+              }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  ☰ Filtros
+                  {(activeFilter.liga || activeFilter.epoca) && (
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f8f4ee', display: 'inline-block' }} />
+                  )}
+                </span>
+              </button>
+
+              <span className="d86-desktop-only" style={{ marginLeft: 'auto', fontSize: '13px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
                 {total} jerseys
+              </span>
+              <span className="d86-mobile-only" style={{ marginLeft: 'auto', fontSize: '12px', color: '#aaa', letterSpacing: '1px', flexShrink: 0 }}>
+                {total}
               </span>
             </div>
           )}
@@ -426,10 +453,130 @@ export default function Home() {
         </>
       )}
 
+      {/* ── BOTTOM SHEET DE FILTROS (mobile) ── */}
+      {filtersOpen && (
+        <>
+          <div onClick={() => setFiltersOpen(false)} className="d86-sheet-backdrop" />
+          <div className="d86-sheet">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
+              <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '18px', fontWeight: 600, color: '#1a1a1a', letterSpacing: '0.5px' }}>Filtros</p>
+              <button onClick={() => setFiltersOpen(false)} style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: '18px', color: '#1a1a1a',
+              }}>✕</button>
+            </div>
+
+            <div style={{ overflowY: 'auto', padding: '20px', flex: 1 }}>
+              <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Época</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
+                {EPOCAS.map(e => (
+                  <button key={e} onClick={() => setFilter('epoca', e)} style={{
+                    background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
+                    color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
+                    border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
+                    borderRadius: '2px', padding: '8px 14px', fontSize: '13px',
+                    letterSpacing: '1px', cursor: 'pointer',
+                    textTransform: 'uppercase',
+                  }}>{e}</button>
+                ))}
+              </div>
+
+              <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Ligas</p>
+              {showEquipos ? (
+                <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  background: 'transparent', border: '1px solid #ddd',
+                  borderRadius: '2px', padding: '8px 13px 8px 6px',
+                  fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                  textTransform: 'uppercase', width: '100%', textAlign: 'left', color: '#888',
+                  marginBottom: '16px',
+                }}>
+                  <span>←</span>
+                  {LIGAS_LOGOS[activeFilter.liga] && (
+                    <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                      <img src={LIGAS_LOGOS[activeFilter.liga]} alt={activeFilter.liga} style={{ width: '20px', height: '20px', objectFit: 'contain' }}/>
+                    </div>
+                  )}
+                  {activeFilter.liga}
+                </button>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '8px' }}>
+                  {LIGAS.map(l => {
+                    const ligaLogo = LIGAS_LOGOS[l]
+                    const isActive = activeFilter.liga === l
+                    return (
+                      <button key={l} onClick={() => setFilter('liga', l)} style={{
+                        display: 'flex', alignItems: 'center', gap: '8px',
+                        background: isActive ? '#1a1a1a' : 'transparent',
+                        color: isActive ? '#f8f4ee' : '#444',
+                        border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                        borderRadius: '2px', padding: ligaLogo ? '8px 13px 8px 6px' : '9px 13px',
+                        fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                        textTransform: 'uppercase', width: '100%', textAlign: 'left',
+                      }}>
+                        {ligaLogo && (
+                          <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                            <img src={ligaLogo} alt={l} style={{ width: '20px', height: '20px', objectFit: 'contain' }}/>
+                          </div>
+                        )}
+                        {l}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+
+              {showEquipos && (
+                <div style={{ marginTop: '16px' }}>
+                  <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Equipos</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
+                      const logoUrl = EQUIPOS_LOGOS[equipo]
+                      const isActive = activeFilter.equipo === equipo
+                      return (
+                        <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
+                          display: 'flex', alignItems: 'center', gap: '8px',
+                          background: isActive ? '#1a1a1a' : 'transparent',
+                          border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                          borderRadius: '2px', padding: '7px 13px 7px 6px',
+                          cursor: 'pointer', width: '100%', textAlign: 'left',
+                        }}>
+                          {logoUrl && (
+                            <div style={{ width: '24px', height: '24px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                              <img src={logoUrl} alt={equipo} style={{ width: '18px', height: '18px', objectFit: 'contain' }}/>
+                            </div>
+                          )}
+                          <span style={{ fontSize: '12.5px', letterSpacing: '0.5px', color: isActive ? '#f8f4ee' : '#888', textTransform: 'uppercase' }}>{shortName(equipo)}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px', padding: '16px 20px', borderTop: '1px solid #e0d8cc', flexShrink: 0 }}>
+              {(activeFilter.liga || activeFilter.epoca) && (
+                <button onClick={() => { setActive(p => ({ ...p, liga: '', epoca: '', equipo: '' })); setShowEquipos(false); setPage(0) }} style={{
+                  flex: 1, background: 'transparent', border: '1px solid #ccc',
+                  borderRadius: '2px', padding: '12px', fontSize: '12px',
+                  letterSpacing: '1px', cursor: 'pointer', color: '#888', textTransform: 'uppercase',
+                }}>Limpiar</button>
+              )}
+              <button onClick={() => setFiltersOpen(false)} style={{
+                flex: 2, background: '#1a1a1a', border: '1px solid #1a1a1a',
+                borderRadius: '2px', padding: '12px', fontSize: '12px',
+                letterSpacing: '1px', cursor: 'pointer', color: '#f8f4ee', textTransform: 'uppercase',
+              }}>Ver {total} resultados</button>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* ── LANDING ── */}
       {!catalogoVisible && (
         <div style={{ minHeight: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column'}}>
-          <section id="hero" style={{
+          <section id="hero" className="d86-hero-section" style={{
             padding: '40px 24px 32px',
             borderBottom: '1px solid #e0d8cc',
             boxSizing: 'border-box',
@@ -437,23 +584,23 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-             <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+             <div className="d86-hero-title-row" style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                 <div>
                   <p style={{ fontSize: '11px', letterSpacing: '4px', color: '#888', textTransform: 'uppercase', marginBottom: '12px' }}>
                     Monterrey · Envíos a todo México
                   </p>
-                  <h1 style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(28px, 5.5vw, 62px)', color: '#1a1a1a', letterSpacing: '2px', lineHeight: 1, whiteSpace: 'nowrap' }}>
+                  <h1 className="d86-hero-title" style={{ fontFamily: 'Mexcellent, serif', fontSize: 'clamp(28px, 5.5vw, 62px)', color: '#1a1a1a', letterSpacing: '2px', lineHeight: 1, whiteSpace: 'nowrap' }}>
                     PLAYERAS DE FÚTBOL RETRO
                   </h1>
                 </div>
-                <p style={{ fontSize: '18px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
+                <p className="d86-hero-subtitle" style={{ fontSize: '18px', color: '#888', maxWidth: '220px', lineHeight: 1.6, fontFamily: 'Barlow Condensed', textAlign: 'right' }}>
                   Somos aficionados del fútbol.
                 </p>
               </div>
             </section>
 
           {/* ── CARRUSEL ── */}
-          <div style={{
+          <div className="d86-carousel" style={{
             overflowX: 'auto',
             overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
@@ -479,6 +626,7 @@ export default function Home() {
                 
               ].map((cat, i) => (
                 <div key={i}
+                  className="d86-carousel-item"
                   onClick={() => { clearTimeout(hoverTimer); setHoverTimer(null); setHoveredCarousel(null); setFilter(cat.filtroKey, cat.filtroVal); setCatalogoVisible(true); setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100); }}
                   onMouseEnter={() => {
                     const timer = setTimeout(() => setHoveredCarousel(cat.foto), 2500)
@@ -524,9 +672,9 @@ export default function Home() {
       {catalogoVisible && (
         <>
         
-          <div id="catalogo" style={{ maxWidth: '1380px', margin: '0 auto', width: '100%', display: 'flex', gap: '32px', padding: '0 24px', boxSizing: 'border-box', alignItems: 'flex-start' }}>
+          <div id="catalogo" className="d86-catalogo-shell" style={{ maxWidth: '1380px', margin: '0 auto', width: '100%', display: 'flex', gap: '32px', padding: '0 24px', boxSizing: 'border-box', alignItems: 'flex-start' }}>
 
-            <aside className="sidebar-scroll" style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '70px', paddingTop: '18px', paddingBottom: '32px', boxSizing: 'border-box' }}>
+            <aside className="sidebar-scroll d86-sidebar" style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '70px', paddingTop: '18px', paddingBottom: '32px', boxSizing: 'border-box' }}>
               <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '12px' }}>Ligas</p>
               {showEquipos ? (
                 <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
@@ -605,7 +753,7 @@ export default function Home() {
           {/* FIX: el section ocupa todo el ancho sin maxWidth,
               el padding se aplica solo a los controles de paginación,
               el grid corre de borde a borde dentro del maxWidth wrapper */}
-          <section style={{
+          <section className="d86-grid-section" style={{
             flex: 1,
             minWidth: 0,
             boxSizing: 'border-box',
@@ -618,7 +766,7 @@ export default function Home() {
                 <div style={{ textAlign: 'center', padding: '80px', color: '#aaa', fontSize: '12px', letterSpacing: '3px' }}>Sin resultados</div>
               ) : (
                 // FIX GRID: background del gap = color del borde, sin boxShadow roto
-                <div style={{
+                <div className="d86-product-grid" style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
                   gap: '1px',
@@ -654,15 +802,15 @@ export default function Home() {
                             <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🎽</div>
                           )}
                         </div>
-                        <div style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
-                          <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '5px' }}>
+                        <div className="d86-product-card-body" style={{ padding: '14px 14px 18px', borderTop: '1px solid #e0d8cc' }}>
+                          <p className="d86-product-card-meta" style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '5px' }}>
                             {p.liga || 'Jersey'}{p.anio ? ` · ${p.anio}` : ''}
                           </p>
-                          <p style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
+                          <p className="d86-product-card-title" style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
                             {nombre}
                           </p>
                           {p.edicion_especial && ediciones[p.edicion_especial] && (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
+                            <div className="d86-desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
                               <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />
                               <span style={{ fontSize: '9px', letterSpacing: '1.5px', color: '#888', textTransform: 'uppercase' }}>{p.edicion_especial}</span>
                             </div>
@@ -779,8 +927,8 @@ export default function Home() {
             background: 'rgba(180, 170, 160, 0.25)',
             animation: 'fadeIn 0.25s ease-out',
           }}/>
-          <div style={{ position: 'fixed', inset: 0, zIndex: 501, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-            <div style={{
+          <div className="d86-modal-shell" style={{ position: 'fixed', inset: 0, zIndex: 501, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+            <div className="d86-modal-card" style={{
               background: 'rgba(255, 255, 255, 0.22)',
               backdropFilter: 'blur(60px) saturate(2.2) brightness(1.35)',
               WebkitBackdropFilter: 'blur(60px) saturate(2.2) brightness(1.35)',
@@ -805,8 +953,8 @@ export default function Home() {
                 <button onClick={closePlayera} style={{ background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.75)', borderRadius: '50%', width: '36px', height: '36px', color: 'rgba(20,15,10,0.8)', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</button>
               </div>
 
-              <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
-                <div style={{ flex: '0 0 62%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '480px' }}>
+              <div className="d86-modal-body" style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
+                <div className="d86-modal-image" style={{ flex: '0 0 62%', position: 'relative', background: 'rgba(255,255,255,0.15)', minHeight: '480px' }}>
                   {loadingFotos ? (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(20,15,10,0.4)', fontSize: '11px', letterSpacing: '3px' }}>CARGANDO...</div>
                   ) : fotos.length > 0 ? (
@@ -834,7 +982,7 @@ export default function Home() {
                   )}
                 </div>
 
-                <div style={{ flex: 1, padding: '24px', overflowY: 'auto', borderLeft: '1px solid rgba(255,255,255,0.4)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div className="d86-modal-info" style={{ flex: 1, padding: '24px', overflowY: 'auto', borderLeft: '1px solid rgba(255,255,255,0.4)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {[selectedPlayera.equipo, selectedPlayera.liga, selectedPlayera.epoca, selectedPlayera.tipo].filter(Boolean).map((tag, i) => (
                       <span key={i} style={{ background: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.7)', borderRadius: '4px', padding: '3px 10px', fontSize: '10px', letterSpacing: '2px', color: 'rgba(20,15,10,0.75)', textTransform: 'uppercase' }}>{tag}</span>
