@@ -856,12 +856,6 @@ export default function Home() {
                           <p className="d86-product-card-title" style={{ fontFamily: 'Barlow Condensed', fontSize: '16px', color: '#1a1a1a', fontWeight: 600, lineHeight: 1.2, margin: 0 }}>
                             {nombre}
                           </p>
-                          {p.edicion_especial && ediciones[p.edicion_especial] && (
-                            <div className="d86-desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', padding: '4px 8px', background: '#f0ece4', borderRadius: '4px', width: 'fit-content' }}>
-                              <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ height: '16px', width: 'auto', objectFit: 'contain' }} />
-                              <span style={{ fontSize: '9px', letterSpacing: '1.5px', color: '#888', textTransform: 'uppercase' }}>{p.edicion_especial}</span>
-                            </div>
-                          )}
                         </div>
                       </div>
                     )
