@@ -27,7 +27,7 @@ const EQUIPOS_LOGOS = {
   // La Liga
   'Atlético de Madrid':    logo('La Liga/spain_atletico-madrid.football-logos.cc.svg'),
   'FC Barcelona':          logo('La Liga/spain_barcelona.football-logos.cc.svg'),
-  'Celta de Vigo':            logo('La Liga/spain_celta.football-logos.cc.svg'),
+  'Celta de Vigo':         logo('La Liga/spain_celta.football-logos.cc.svg'),
   'Deportivo de la Coruña':   logo('La Liga/spain_deportivo-la-coruna.football-logos.cc.svg'),
   'RCD Espanyol':          logo('La Liga/spain_espanyol.football-logos.cc.svg'),
   'Real Betis':            logo('La Liga/spain_real-betis.football-logos.cc.svg'),
@@ -107,10 +107,10 @@ const EQUIPOS_LOGOS = {
   'AC Milan':    logo('Serie A/italy_milan.football-logos.cc.svg'),
   'ACF Fiorentina':  logo('Serie A/italy_fiorentina.football-logos.cc.svg'),
   'Inter Milan': logo('Serie A/italy_inter.football-logos.cc.svg'),
-  'Juventus FC':    logo('Serie A/italy_juventus.football-logos.cc.svg'),
+  'Juventus FC': logo('Serie A/italy_juventus.football-logos.cc.svg'),
   'SS Lazio':    logo('Serie A/italy_lazio.football-logos.cc.svg'),
-  'SSC Napoli':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
-  'AS Roma':        logo('Serie A/italy_roma.football-logos.cc.svg'),
+  'SSC Napoli':  logo('Serie A/italy_napoli.football-logos.cc.svg'),
+  'AS Roma':     logo('Serie A/italy_roma.football-logos.cc.svg'),
   'Venezia FC':  logo('Serie A/italy_venezia.football-logos.cc.svg'),
 }
 
