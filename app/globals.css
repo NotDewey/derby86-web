@@ -57,13 +57,12 @@ input::placeholder { color: #bbb; }
    Las reglas dentro del media query son las que activan el layout mobile. */
 .d86-mobile-only { display: none; }
 .d86-desktop-only { display: revert; }
-.d86-tag-bubble { display: none; }
+.d86-tag-bubble { display: flex; } /* visible en todos los tamaños: grid mobile, tablet y desktop */
 
 @media (max-width: 767px) {
   .d86-mobile-only { display: revert; }
   .d86-desktop-only { display: none !important; }
   button.d86-mobile-only { display: inline-flex; }
-  .d86-tag-bubble { display: flex !important; }
 
   /* Nav: la fila de búsqueda + épocas pasa a layout compacto de 2 filas */
   .d86-nav-inner {
@@ -221,6 +220,21 @@ input::placeholder { color: #bbb; }
   }
   .d86-product-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+  }
+}
+
+/* Burbuja de tag: un poco más grande a partir de tablet/desktop,
+   donde las cards del grid son más anchas que en mobile */
+@media (min-width: 768px) {
+  .d86-tag-bubble {
+    width: 32px !important;
+    height: 32px !important;
+    top: 10px !important;
+    right: 10px !important;
+  }
+  .d86-tag-bubble img {
+    width: 19px !important;
+    height: 19px !important;
   }
 }
 
