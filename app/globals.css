@@ -228,8 +228,19 @@ input::placeholder { color: #bbb; }
   }
 }
 
-/* Burbuja de tag: un poco más grande a partir de tablet/desktop,
-   donde las cards del grid son más anchas que en mobile */
+/* Burbuja de tag: tamaños por breakpoint — definidos aquí (no en inline
+   styles del JSX) para que los !important tengan efecto real */
+.d86-tag-bubble {
+  width: 26px;
+  height: 26px;
+  top: 6px;
+  right: 6px;
+}
+.d86-tag-bubble img {
+  width: 16px;
+  height: 16px;
+}
+
 @media (min-width: 768px) {
   .d86-tag-bubble {
     width: 32px !important;
