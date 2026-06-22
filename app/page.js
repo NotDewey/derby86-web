@@ -27,7 +27,7 @@ const EQUIPOS_LOGOS = {
   // La Liga
   'Atlético de Madrid':    logo('La Liga/spain_atletico-madrid.football-logos.cc.svg'),
   'FC Barcelona':          logo('La Liga/spain_barcelona.football-logos.cc.svg'),
-  'Celta de Vigo':         logo('La Liga/spain_celta.football-logos.cc.svg'),
+  'Celta de Vigo':            logo('La Liga/spain_celta.football-logos.cc.svg'),
   'Deportivo de la Coruña':   logo('La Liga/spain_deportivo-la-coruna.football-logos.cc.svg'),
   'RCD Espanyol':          logo('La Liga/spain_espanyol.football-logos.cc.svg'),
   'Real Betis':            logo('La Liga/spain_real-betis.football-logos.cc.svg'),
@@ -51,7 +51,7 @@ const EQUIPOS_LOGOS = {
   'Celtic FC':             logo('Otro/scotland_celtic.football-logos.cc.svg'),
   'Córdoba CF':            logo('Otro/spain_cordoba.football-logos.cc.svg'),
   'Cork City':             logo('Otro/republic-of-ireland_cork-city.football-logos.cc.svg'),
-  'Derry City FC':         logo('Otro/republic-of-ireland_derry-city.football-logos.cc.svg'),
+  'DC United':             logo('Otro/usa_dc-united.football-logos.cc.svg'),
   'Kaizer Chiefs':         logo('Otro/south-africa_kaizer-chiefs.football-logos.cc.svg'),
   'LA Galaxy':             logo('Otro/usa_la-galaxy.football-logos.cc.svg'),
   'FC Porto':              logo('Liga Portugal/portugal_fc-porto.football-logos.cc.svg'),
@@ -107,10 +107,10 @@ const EQUIPOS_LOGOS = {
   'AC Milan':    logo('Serie A/italy_milan.football-logos.cc.svg'),
   'ACF Fiorentina':  logo('Serie A/italy_fiorentina.football-logos.cc.svg'),
   'Inter Milan': logo('Serie A/italy_inter.football-logos.cc.svg'),
-  'Juventus FC': logo('Serie A/italy_juventus.football-logos.cc.svg'),
+  'Juventus FC':    logo('Serie A/italy_juventus.football-logos.cc.svg'),
   'SS Lazio':    logo('Serie A/italy_lazio.football-logos.cc.svg'),
-  'SSC Napoli':  logo('Serie A/italy_napoli.football-logos.cc.svg'),
-  'AS Roma':     logo('Serie A/italy_roma.football-logos.cc.svg'),
+  'SSC Napoli':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
+  'AS Roma':        logo('Serie A/italy_roma.football-logos.cc.svg'),
   'Venezia FC':  logo('Serie A/italy_venezia.football-logos.cc.svg'),
 }
 
@@ -124,7 +124,7 @@ const EQUIPOS_POR_LIGA = {
   'Ligue 1':        ['AS Monaco', 'Olympique Lyonnais', 'Olympique Marseille', 'Paris Saint-Germain'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
   'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Fluminense', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
-  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'Derry City FC', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'Sporting CP', 'SL Benfica', 'Tokyo Verdy'],
+  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'DC United', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'Sporting CP', 'SL Benfica', 'Tokyo Verdy'],
 }
 
 const LIGAS_LOGOS = {
@@ -144,7 +144,7 @@ export default function Home() {
   const [total, setTotal]             = useState(0)
   const [page, setPage]               = useState(0)
   const [menuOpen, setMenuOpen]       = useState(false)
-  const [activeFilter, setActive]     = useState({ liga: '', epoca: '', search: '', equipo: ''})
+  const [activeFilter, setActive]     = useState({ liga: '', epocas: [], search: '', equipos: []})
   const [hoveredId, setHoveredId]     = useState(null)
   const [selectedPlayera, setSelectedPlayera] = useState(null)
   const [fotos, setFotos]             = useState([])
@@ -216,10 +216,12 @@ export default function Home() {
       .order('created_at', { ascending: false })
       .range(page * ITEMS_PER_PAGE, (page + 1) * ITEMS_PER_PAGE - 1)
 
-    if (activeFilter.liga && !activeFilter.equipo)   q = q.eq('liga', activeFilter.liga)
-    if (activeFilter.epoca)  q = q.eq('epoca', activeFilter.epoca)
+    if (activeFilter.liga && !activeFilter.equipos.length) q = q.eq('liga', activeFilter.liga)
+    if (activeFilter.epocas.length === 1) q = q.eq('epoca', activeFilter.epocas[0])
+    if (activeFilter.epocas.length > 1)  q = q.in('epoca', activeFilter.epocas)
     if (activeFilter.search) q = q.ilike('nombre_display', `%${activeFilter.search}%`)
-    if (activeFilter.equipo) q = q.eq('equipo', activeFilter.equipo)
+    if (activeFilter.equipos.length === 1) q = q.eq('equipo', activeFilter.equipos[0])
+    if (activeFilter.equipos.length > 1)  q = q.in('equipo', activeFilter.equipos)
     
     const { data, count } = await q
     setPlayeras(data || [])
@@ -275,12 +277,22 @@ export default function Home() {
       const newLiga = activeFilter.liga === val ? '' : val
       setEquiposFading(true)
       setTimeout(() => {
-        setActive(p => ({ ...p, liga: newLiga, equipo: '' }))
+        setActive(p => ({ ...p, liga: newLiga, equipos: [] }))
         setShowEquipos(!!newLiga)
         setEquiposFading(false)
       }, 200)
     } else if (key === 'equipo') {
-      setActive(p => ({ ...p, equipo: p.equipo === val ? '' : val }))
+      // Toggle: agrega o quita del array de equipos seleccionados
+      setActive(p => {
+        const ya = p.equipos.includes(val)
+        return { ...p, equipos: ya ? p.equipos.filter(e => e !== val) : [...p.equipos, val] }
+      })
+    } else if (key === 'epoca') {
+      // Toggle: agrega o quita del array de épocas seleccionadas
+      setActive(p => {
+        const ya = p.epocas.includes(val)
+        return { ...p, epocas: ya ? p.epocas.filter(e => e !== val) : [...p.epocas, val] }
+      })
     } else {
       setActive(p => ({ ...p, [key]: p[key] === val ? '' : val }))
     }
@@ -390,9 +402,9 @@ export default function Home() {
               <div className="d86-desktop-only" style={{ display: 'contents' }}>
                 {EPOCAS.map(e => (
                   <button key={e} onClick={() => setFilter('epoca', e)} style={{
-                    background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
-                    color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
-                    border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
+                    background: activeFilter.epocas.includes(e) ? '#1a1a1a' : 'transparent',
+                    color: activeFilter.epocas.includes(e) ? '#f8f4ee' : '#888',
+                    border: `1px solid ${activeFilter.epocas.includes(e) ? '#1a1a1a' : '#ddd'}`,
                     borderRadius: '2px', padding: '6px 13px', fontSize: '13px',
                     letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
                     textTransform: 'uppercase', flexShrink: 0,
@@ -403,16 +415,16 @@ export default function Home() {
               {/* Botón de filtros: solo visible en mobile, abre el bottom-sheet */}
               <button onClick={() => setFiltersOpen(true)} className="d86-mobile-only" style={{
                 alignItems: 'center', gap: '6px',
-                background: (activeFilter.liga || activeFilter.epoca) ? '#1a1a1a' : 'transparent',
-                color: (activeFilter.liga || activeFilter.epoca) ? '#f8f4ee' : '#444',
-                border: `1px solid ${(activeFilter.liga || activeFilter.epoca) ? '#1a1a1a' : '#ccc'}`,
+                background: (activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) ? '#1a1a1a' : 'transparent',
+                color: (activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) ? '#f8f4ee' : '#444',
+                border: `1px solid ${(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) ? '#1a1a1a' : '#ccc'}`,
                 borderRadius: '2px', padding: '7px 12px', fontSize: '12px',
                 letterSpacing: '1px', cursor: 'pointer', whiteSpace: 'nowrap',
                 textTransform: 'uppercase', flexShrink: 0,
               }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   ☰ Filtros
-                  {(activeFilter.liga || activeFilter.epoca) && (
+                  {(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f8f4ee', display: 'inline-block' }} />
                   )}
                 </span>
@@ -505,9 +517,9 @@ export default function Home() {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
                 {EPOCAS.map(e => (
                   <button key={e} onClick={() => setFilter('epoca', e)} style={{
-                    background: activeFilter.epoca === e ? '#1a1a1a' : 'transparent',
-                    color: activeFilter.epoca === e ? '#f8f4ee' : '#888',
-                    border: `1px solid ${activeFilter.epoca === e ? '#1a1a1a' : '#ddd'}`,
+                    background: activeFilter.epocas.includes(e) ? '#1a1a1a' : 'transparent',
+                    color: activeFilter.epocas.includes(e) ? '#f8f4ee' : '#888',
+                    border: `1px solid ${activeFilter.epocas.includes(e) ? '#1a1a1a' : '#ddd'}`,
                     borderRadius: '2px', padding: '8px 14px', fontSize: '13px',
                     letterSpacing: '1px', cursor: 'pointer',
                     textTransform: 'uppercase',
@@ -566,7 +578,7 @@ export default function Home() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
                       const logoUrl = EQUIPOS_LOGOS[equipo]
-                      const isActive = activeFilter.equipo === equipo
+                      const isActive = activeFilter.equipos.includes(equipo)
                       return (
                         <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
                           display: 'flex', alignItems: 'center', gap: '8px',
@@ -590,8 +602,8 @@ export default function Home() {
             </div>
 
             <div style={{ display: 'flex', gap: '10px', padding: '16px 20px', borderTop: '1px solid #e0d8cc', flexShrink: 0 }}>
-              {(activeFilter.liga || activeFilter.epoca) && (
-                <button onClick={() => { setActive(p => ({ ...p, liga: '', epoca: '', equipo: '' })); setShowEquipos(false); setPage(0) }} style={{
+              {(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
+                <button onClick={() => { setActive(p => ({ ...p, liga: '', epocas: [], equipos: [] })); setShowEquipos(false); setPage(0) }} style={{
                   flex: 1, background: 'transparent', border: '1px solid #ccc',
                   borderRadius: '2px', padding: '12px', fontSize: '12px',
                   letterSpacing: '1px', cursor: 'pointer', color: '#888', textTransform: 'uppercase',
@@ -760,7 +772,7 @@ export default function Home() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
                       const logoUrl = EQUIPOS_LOGOS[equipo]
-                      const isActive = activeFilter.equipo === equipo
+                      const isActive = activeFilter.equipos.includes(equipo)
                       return (
                         <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
                           display: 'flex', alignItems: 'center', gap: '8px',
