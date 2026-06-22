@@ -849,15 +849,15 @@ export default function Home() {
                           )}
                           {p.edicion_especial && ediciones[p.edicion_especial] && (
                             <div className="d86-tag-bubble" title={p.edicion_especial} style={{
-                              position: 'absolute', top: '6px', right: '6px',
-                              width: '26px', height: '26px', borderRadius: '50%',
+                              position: 'absolute',
+                              borderRadius: '50%',
                               background: 'rgba(248,244,238,0.92)',
                               border: '1px solid rgba(0,0,0,0.08)',
                               boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
                               alignItems: 'center', justifyContent: 'center',
                               flexShrink: 0,
                             }}>
-                              <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+                              <img src={ediciones[p.edicion_especial]} alt={p.edicion_especial} style={{ objectFit: 'contain' }} />
                             </div>
                           )}
                         </div>
