@@ -27,7 +27,7 @@ const EQUIPOS_LOGOS = {
   // La Liga
   'Atlético de Madrid':    logo('La Liga/spain_atletico-madrid.football-logos.cc.svg'),
   'FC Barcelona':          logo('La Liga/spain_barcelona.football-logos.cc.svg'),
-  'Celta de Vigo':            logo('La Liga/spain_celta.football-logos.cc.svg'),
+  'Celta de Vigo':         logo('La Liga/spain_celta.football-logos.cc.svg'),
   'Deportivo de la Coruña':   logo('La Liga/spain_deportivo-la-coruna.football-logos.cc.svg'),
   'RCD Espanyol':          logo('La Liga/spain_espanyol.football-logos.cc.svg'),
   'Real Betis':            logo('La Liga/spain_real-betis.football-logos.cc.svg'),
@@ -51,7 +51,7 @@ const EQUIPOS_LOGOS = {
   'Celtic FC':             logo('Otro/scotland_celtic.football-logos.cc.svg'),
   'Córdoba CF':            logo('Otro/spain_cordoba.football-logos.cc.svg'),
   'Cork City':             logo('Otro/republic-of-ireland_cork-city.football-logos.cc.svg'),
-  'Derry City':             logo('Otro/republic-of-ireland_derry-city.football-logos.cc.svg'),
+  'Derry City FC':         logo('Otro/republic-of-ireland_derry-city.football-logos.cc.svg'),
   'Kaizer Chiefs':         logo('Otro/south-africa_kaizer-chiefs.football-logos.cc.svg'),
   'LA Galaxy':             logo('Otro/usa_la-galaxy.football-logos.cc.svg'),
   'FC Porto':              logo('Liga Portugal/portugal_fc-porto.football-logos.cc.svg'),
@@ -107,10 +107,10 @@ const EQUIPOS_LOGOS = {
   'AC Milan':    logo('Serie A/italy_milan.football-logos.cc.svg'),
   'ACF Fiorentina':  logo('Serie A/italy_fiorentina.football-logos.cc.svg'),
   'Inter Milan': logo('Serie A/italy_inter.football-logos.cc.svg'),
-  'Juventus FC':    logo('Serie A/italy_juventus.football-logos.cc.svg'),
+  'Juventus FC': logo('Serie A/italy_juventus.football-logos.cc.svg'),
   'SS Lazio':    logo('Serie A/italy_lazio.football-logos.cc.svg'),
-  'SSC Napoli':      logo('Serie A/italy_napoli.football-logos.cc.svg'),
-  'AS Roma':        logo('Serie A/italy_roma.football-logos.cc.svg'),
+  'SSC Napoli':  logo('Serie A/italy_napoli.football-logos.cc.svg'),
+  'AS Roma':     logo('Serie A/italy_roma.football-logos.cc.svg'),
   'Venezia FC':  logo('Serie A/italy_venezia.football-logos.cc.svg'),
 }
 
@@ -124,7 +124,7 @@ const EQUIPOS_POR_LIGA = {
   'Ligue 1':        ['AS Monaco', 'Olympique Lyonnais', 'Olympique Marseille', 'Paris Saint-Germain'],
   'Liga MX':        ['Club América','Monterrey','Tigres'],
   'Brasileiro Série A': ['Botafogo', 'Flamengo', 'Fluminense', 'Palmeiras', 'Santos FC', 'SC Corinthians Paulista', 'São Paulo FC'],
-  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'Derry City', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'Sporting CP', 'SL Benfica', 'Tokyo Verdy'],
+  'Otro':           ['Ajax Amsterdam', 'Boca Juniors', 'Ceará', 'Celtic FC', 'Córdoba CF', 'Cork City', 'Derry City FC', 'FC Porto', 'Kaizer Chiefs', 'LA Galaxy', 'Rangers FC', 'River Plate', 'Sporting CP', 'SL Benfica', 'Tokyo Verdy'],
 }
 
 const LIGAS_LOGOS = {
