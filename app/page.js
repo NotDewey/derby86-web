@@ -729,7 +729,6 @@ export default function Home() {
       {/* ── CATÁLOGO ── */}
       {catalogoVisible && (
         <>
-        
           <div id="catalogo" className="d86-catalogo-shell" style={{ maxWidth: '1380px', margin: '0 auto', width: '100%', display: 'flex', gap: '32px', padding: '0 24px', boxSizing: 'border-box', alignItems: 'flex-start' }}>
             <aside className="sidebar-scroll d86-sidebar" style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '70px', paddingTop: '18px', paddingBottom: '32px', boxSizing: 'border-box' }}>
             
@@ -853,7 +852,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-              </aside>
 
               {showEquipos ? (
                 <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
