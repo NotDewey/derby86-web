@@ -424,7 +424,7 @@ export default function Home() {
               }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   ☰ Filtros
-                  {(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
+                  {!!(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f8f4ee', display: 'inline-block' }} />
                   )}
                 </span>
