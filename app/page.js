@@ -853,7 +853,7 @@ export default function Home() {
                   </div>
                 </div>
               )}
-            </aside>
+              </aside>
 
               {showEquipos ? (
                 <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
