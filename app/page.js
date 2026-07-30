@@ -731,9 +731,130 @@ export default function Home() {
         <>
         
           <div id="catalogo" className="d86-catalogo-shell" style={{ maxWidth: '1380px', margin: '0 auto', width: '100%', display: 'flex', gap: '32px', padding: '0 24px', boxSizing: 'border-box', alignItems: 'flex-start' }}>
-
             <aside className="sidebar-scroll d86-sidebar" style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '70px', paddingTop: '18px', paddingBottom: '32px', boxSizing: 'border-box' }}>
+            
+              {/* ── DISPONIBILIDAD ── */}
+              <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '12px' }}>Disponibilidad</p>
+            
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '26px' }}>
+                {DISPONIBILIDADES.map(opcion => {
+                  const isActive = activeFilter.disponibilidad === opcion.value
+            
+                  return (
+                    <button key={opcion.value} onClick={() => setFilter('disponibilidad', opcion.value)} style={{
+                      display: 'flex', alignItems: 'center', width: '100%',
+                      background: isActive ? '#1a1a1a' : 'transparent',
+                      color: isActive ? '#f8f4ee' : '#444',
+                      border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                      borderRadius: '2px', padding: '10px 13px',
+                      fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                      textTransform: 'uppercase', textAlign: 'left',
+                      transition: 'all 0.15s ease',
+                    }}>
+                      <span style={{
+                        width: '14px', height: '14px', borderRadius: '50%',
+                        border: `1px solid ${isActive ? '#f8f4ee' : '#bbb'}`,
+                        marginRight: '10px', display: 'inline-flex',
+                        alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      }}>
+                        {isActive && (
+                          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#f8f4ee' }} />
+                        )}
+                      </span>
+            
+                      {opcion.label}
+                    </button>
+                  )
+                })}
+              </div>
+            
+              {/* ── LIGAS ── */}
               <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '12px' }}>Ligas</p>
+            
+              {showEquipos ? (
+                <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  background: 'transparent', border: '1px solid #ddd',
+                  borderRadius: '2px', padding: '6px 13px 6px 6px',
+                  fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                  textTransform: 'uppercase', width: '100%',
+                  textAlign: 'left', color: '#888',
+                  marginBottom: '24px', animation: 'fadeIn 0.25s ease-out',
+                }}>
+                  <span>←</span>
+            
+                  {LIGAS_LOGOS[activeFilter.liga] && (
+                    <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                      <img src={LIGAS_LOGOS[activeFilter.liga]} alt={activeFilter.liga} style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+                    </div>
+                  )}
+            
+                  {activeFilter.liga}
+                </button>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', opacity: equiposFading ? 0 : 1, transition: 'opacity 0.2s ease' }}>
+                  {LIGAS.map(l => {
+                    const ligaLogo = LIGAS_LOGOS[l]
+                    const isActive = activeFilter.liga === l
+            
+                    return (
+                      <button key={l} onClick={() => setFilter('liga', l)} style={{
+                        display: 'flex', alignItems: 'center', gap: '8px',
+                        background: isActive ? '#1a1a1a' : 'transparent',
+                        color: isActive ? '#f8f4ee' : '#444',
+                        border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                        borderRadius: '2px',
+                        padding: ligaLogo ? '6px 13px 6px 6px' : '7px 13px',
+                        fontSize: '13px', letterSpacing: '1px', cursor: 'pointer',
+                        textTransform: 'uppercase', width: '100%', textAlign: 'left',
+                      }}>
+                        {ligaLogo && (
+                          <div style={{ width: '26px', height: '26px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                            <img src={ligaLogo} alt={l} style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+                          </div>
+                        )}
+            
+                        {l}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+            
+              {showEquipos && (
+                <div style={{ marginTop: '16px' }}>
+                  <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Equipos</p>
+            
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    {(EQUIPOS_POR_LIGA[activeFilter.liga] || []).map(equipo => {
+                      const logoUrl = EQUIPOS_LOGOS[equipo]
+                      const isActive = activeFilter.equipos.includes(equipo)
+            
+                      return (
+                        <button key={equipo} onClick={() => setFilter('equipo', equipo)} style={{
+                          display: 'flex', alignItems: 'center', gap: '8px',
+                          background: isActive ? '#1a1a1a' : 'transparent',
+                          border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                          borderRadius: '2px', padding: '6px 13px 6px 6px',
+                          cursor: 'pointer', width: '100%', textAlign: 'left',
+                        }}>
+                          {logoUrl && (
+                            <div style={{ width: '24px', height: '24px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? 'rgba(255,255,255,0.1)' : '#f0ece4', borderRadius: '2px', overflow: 'hidden' }}>
+                              <img src={logoUrl} alt={equipo} style={{ width: '18px', height: '18px', objectFit: 'contain', animation: 'fadeIn 0.4s ease-out' }} />
+                            </div>
+                          )}
+            
+                          <span style={{ fontSize: '12.5px', letterSpacing: '0.5px', color: isActive ? '#f8f4ee' : '#888', textTransform: 'uppercase' }}>
+                            {shortName(equipo)}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </aside>
+
               {showEquipos ? (
                 <button onClick={() => setFilter('liga', activeFilter.liga)} style={{
                   display: 'flex', alignItems: 'center', gap: '8px',
