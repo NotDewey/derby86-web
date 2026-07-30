@@ -9,6 +9,11 @@ const LOGO_SVG = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu
 const LIGAS  = ['Selección', 'La Liga', 'Premier League', 'Serie A', 'Bundesliga', 'Ligue 1', 'Liga MX',  'Brasileiro Série A', 'Otro']
 const EPOCAS = ['70s', '80s', '90s', '2000s', '2010s', '2020s']
 
+const DISPONIBILIDADES = [
+  { value: 'disponible', label: 'Disponible'},
+  { value: 'bajo_pedido', label: 'Bajo pedido'},
+]
+
 // Agrega este objeto antes del return, junto a LIGAS y EPOCAS:
 const BASE_URL = 'https://pub-ba15264853a140b1850a9bc1c3439126.r2.dev/filtros'
 const logo = (path) => `${BASE_URL}/${path.split('/').map(encodeURIComponent).join('/')}`
@@ -144,7 +149,7 @@ export default function Home() {
   const [total, setTotal]             = useState(0)
   const [page, setPage]               = useState(0)
   const [menuOpen, setMenuOpen]       = useState(false)
-  const [activeFilter, setActive]     = useState({ liga: '', epocas: [], search: '', equipos: []})
+  const [activeFilter, setActive]     = useState({  disponibilidad: '', liga: '', epocas: [], search: '', equipos: []})
   const [hoveredId, setHoveredId]     = useState(null)
   const [selectedPlayera, setSelectedPlayera] = useState(null)
   const [fotos, setFotos]             = useState([])
@@ -222,6 +227,13 @@ export default function Home() {
     if (activeFilter.search) q = q.ilike('nombre_display', `%${activeFilter.search}%`)
     if (activeFilter.equipos.length === 1) q = q.eq('equipo', activeFilter.equipos[0])
     if (activeFilter.equipos.length > 1)  q = q.in('equipo', activeFilter.equipos)
+    if (activeFilter.disponibilidad === 'disponible') {
+      q = q.eq('stock_disponible', true)
+    }
+    
+    if (activeFilter.disponibilidad === 'bajo_pedido') {
+      q = q.eq('stock_disponible', false)
+    }
     
     const { data, count } = await q
     setPlayeras(data || [])
