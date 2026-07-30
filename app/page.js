@@ -525,6 +525,43 @@ export default function Home() {
             </div>
 
             <div style={{ overflowY: 'auto', padding: '20px', flex: 1 }}>
+
+              {/* ── DISPONIBILIDAD ── */}
+              <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Disponibilidad</p>
+            
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '24px' }}>
+                {DISPONIBILIDADES.map(opcion => {
+                  const isActive = activeFilter.disponibilidad === opcion.value
+            
+                  return (
+                    <button key={opcion.value} onClick={() => setFilter('disponibilidad', opcion.value)} style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
+                      background: isActive ? '#1a1a1a' : 'transparent',
+                      color: isActive ? '#f8f4ee' : '#444',
+                      border: `1px solid ${isActive ? '#1a1a1a' : '#ddd'}`,
+                      borderRadius: '2px', padding: '10px 11px',
+                      fontSize: '12px', letterSpacing: '0.7px',
+                      cursor: 'pointer', textTransform: 'uppercase',
+                      textAlign: 'left',
+                    }}>
+                      <span style={{
+                        width: '13px', height: '13px', borderRadius: '50%',
+                        border: `1px solid ${isActive ? '#f8f4ee' : '#bbb'}`,
+                        marginRight: '8px', display: 'inline-flex',
+                        alignItems: 'center', justifyContent: 'center',
+                        flexShrink: 0,
+                      }}>
+                        {isActive && (
+                          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#f8f4ee' }} />
+                        )}
+                      </span>
+            
+                      {opcion.label}
+                    </button>
+                  )
+                })}
+              </div>
+
               <p style={{ fontSize: '10px', letterSpacing: '2px', color: '#aaa', textTransform: 'uppercase', marginBottom: '10px' }}>Época</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
                 {EPOCAS.map(e => (
@@ -614,8 +651,8 @@ export default function Home() {
             </div>
 
             <div style={{ display: 'flex', gap: '10px', padding: '16px 20px', borderTop: '1px solid #e0d8cc', flexShrink: 0 }}>
-              {(activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
-                <button onClick={() => { setActive(p => ({ ...p, liga: '', epocas: [], equipos: [] })); setShowEquipos(false); setPage(0) }} style={{
+              {(activeFilter.disponibilidad || activeFilter.liga || activeFilter.epocas.length || activeFilter.equipos.length) && (
+                <button onClick={() => { setActive(p => ({ ...p, disponibilidad: '', liga: '', epocas: [], equipos: [] })); setShowEquipos(false); setPage(0) }} style={{
                   flex: 1, background: 'transparent', border: '1px solid #ccc',
                   borderRadius: '2px', padding: '12px', fontSize: '12px',
                   letterSpacing: '1px', cursor: 'pointer', color: '#888', textTransform: 'uppercase',
